@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid AV Architecture | Next-Gen Event Streaming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f5f5f5; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .text-gradient { background: linear-gradient(90deg, #ffffff, #6b7280); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <nav class="fixed w-full z-50 glass px-8 py-5 flex justify-between items-center">
+        <div class="text-xl font-bold tracking-tighter">HYBRID<span class="text-gray-500">AV</span></div>
+        <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-400">
+            <a href="#methodology" class="hover:text-white transition">Methodology</a>
+            <a href="#pre-vis" class="hover:text-white transition">Pre-Visualization</a>
+            <a href="#engineering" class="hover:text-white transition">System Engineering</a>
+        </div>
+        <a href="#contact" class="px-5 py-2 bg-white text-black text-sm font-bold rounded hover:bg-gray-200 transition">Initiate Project</a>
+    </nav>
+
+    <section class="relative h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+        <div class="absolute inset-0 z-[-1] bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20 mix-blend-luminosity"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505] z-[-1]"></div>
+        
+        <h1 class="text-5xl md:text-8xl font-extrabold tracking-tighter mb-6">
+            Architecting the <br><span class="text-gradient">Digital Stage.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mb-10 font-light">
+            We engineer complete hybrid event ecosystems. Delivering high-fidelity streaming, integrated video, and bespoke pre-visualization for global brands.
+        </p>
+        <div class="flex space-x-4">
+            <a href="#methodology" class="px-8 py-4 glass hover:bg-white hover:text-black transition duration-300 rounded font-semibold text-sm">Explore Our Architecture</a>
+        </div>
+    </section>
+
+    <section id="methodology" class="py-32 px-8 max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+        <div class="glass p-10 rounded-xl hover:-translate-y-2 transition duration-500">
+            <div class="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center mb-6">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Pre-Visualization</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+                See your event before load-in. We build exact digital twins of your physical space, allowing for precise camera blocking, lighting, and LED wall configurations in real-time.
+            </p>
+        </div>
+        <section id="pre-vis-slider" class="py-20 px-8 max-w-5xl mx-auto">
+    <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold mb-4">Precision Pre-Visualization</h2>
+        <p class="text-gray-400">Slide to compare our digital twin (left) with the live event reality (right).</p>
+    </div>
+
+    <div class="relative w-full aspect-video rounded-xl overflow-hidden glass group">
+        
+        <img src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?q=80&w=1200&auto=format&fit=crop" alt="Live Event Reality" class="absolute inset-0 w-full h-full object-cover">
+
+        <img src="https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?q=80&w=1200&auto=format&fit=crop" alt="3D Render" id="render-layer" class="absolute inset-0 w-full h-full object-cover" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+
+        <input type="range" min="0" max="100" value="50" id="comparison-slider" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20">
+
+        <div id="slider-divider" class="absolute top-0 bottom-0 w-1 bg-white z-10 pointer-events-none" style="left: 50%;">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l-4 4 4 4m8-8l4 4-4 4"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const slider = document.getElementById('comparison-slider');
+    const renderLayer = document.getElementById('render-layer');
+    const divider = document.getElementById('slider-divider');
+
+    slider.addEventListener('input', (e) => {
+        const value = e.target.value;
+        // Updates the visible area of the top image
+        renderLayer.style.clipPath = `polygon(0 0, ${value}% 0, ${value}% 100%, 0 100%)`;
+        // Moves the physical divider line
+        divider.style.left = `${value}%`;
+    });
+</script>
+        <div class="glass p-10 rounded-xl hover:-translate-y-2 transition duration-500">
+            <div class="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center mb-6">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">System Engineering</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+                Bridging the physical and digital. We design flawless signal flows, integrated video networks, and redundant hybrid architecture built for zero-fail environments.
+            </p>
+        </div>
+
+        <div class="glass p-10 rounded-xl hover:-translate-y-2 transition duration-500">
+            <div class="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center mb-6">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Bespoke Software</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+                Purpose-built digital environments. We deploy custom control interfaces, interactive LED wall configurators, and proprietary web platforms for seamless audience engagement.
+            </p>
+        </div>
+    </section>
+
+    <footer id="contact" class="border-t border-gray-900 mt-20 py-20 text-center px-4">
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Ready to scale your project?</h2>
+        <p class="text-gray-500 mb-10 max-w-lg mx-auto">Partner with dedicated engineers to design the future of your live and digital experiences.</p>
+        <a href="mailto:hello@yourdomain.com" class="px-10 py-4 bg-white text-black text-lg font-bold rounded hover:scale-105 transition transform inline-block">Start Building</a>
+    </footer>
+
+</body>
+</html>
