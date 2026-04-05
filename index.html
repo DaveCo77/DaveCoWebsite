@@ -1,118 +1,566 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hybrid AV Architecture | Next-Gen Event Streaming</title>
+    <title>Pixel Array — Audio visual · Live production · Streaming</title>
+    <meta name="description" content="Pixel Array: seamless audio visual production, including corporate, hybrid & livestreaming events, event design and technical planning.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f5f5f5; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .text-gradient { background: linear-gradient(90deg, #ffffff, #6b7280); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    </style>
+    <script src="tailwind.config.js"></script>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="cinematic antialiased overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 glass px-8 py-5 flex justify-between items-center">
-        <div class="text-xl font-bold tracking-tighter">HYBRID<span class="text-gray-500">AV</span></div>
-        <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-400">
-            <a href="#methodology" class="hover:text-white transition">Methodology</a>
-            <a href="#pre-vis" class="hover:text-white transition">Pre-Visualization</a>
-            <a href="#engineering" class="hover:text-white transition">System Engineering</a>
-        </div>
-        <a href="#contact" class="px-5 py-2 bg-white text-black text-sm font-bold rounded hover:bg-gray-200 transition">Initiate Project</a>
-    </nav>
+    <div class="cine-vignette" aria-hidden="true"></div>
+    <div class="cine-grain" aria-hidden="true"></div>
+    <div class="cine-scan" aria-hidden="true"></div>
 
-    <section class="relative h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
-        <div class="absolute inset-0 z-[-1] bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20 mix-blend-luminosity"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505] z-[-1]"></div>
-        
-        <h1 class="text-5xl md:text-8xl font-extrabold tracking-tighter mb-6">
-            Architecting the <br><span class="text-gradient">Digital Stage.</span>
-        </h1>
-        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mb-10 font-light">
-            We engineer complete hybrid event ecosystems. Delivering high-fidelity streaming, integrated video, and bespoke pre-visualization for global brands.
-        </p>
-        <div class="flex space-x-4">
-            <a href="#methodology" class="px-8 py-4 glass hover:bg-white hover:text-black transition duration-300 rounded font-semibold text-sm">Explore Our Architecture</a>
-        </div>
-    </section>
+    <a href="#main" class="sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-md">Skip to content</a>
 
-<section id="methodology" class="py-32 px-8 max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-        <div class="glass p-10 rounded-xl hover:-translate-y-2 transition duration-500">
-            <div class="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center mb-6">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+    <div class="fixed top-0 left-0 right-0 z-[60]" data-site-header>
+        <div class="utility-bar hidden sm:block text-cine-muted">
+            <div class="max-w-7xl mx-auto px-5 md:px-8 h-9 flex items-center justify-end gap-6">
+                <a href="#policies" class="hover:text-white transition-colors">Terms &amp; conditions</a>
+                <a href="#policies" class="hover:text-white transition-colors">Privacy policy</a>
+                <a href="#policies" class="hover:text-white transition-colors">Return policy</a>
             </div>
-            <h3 class="text-xl font-bold mb-3">Pre-Visualization</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-                See your event before load-in. We build exact digital twins of your physical space, allowing for precise camera blocking, lighting, and LED wall configurations in real-time.
-            </p>
         </div>
-        
-        <div class="glass p-10 rounded-xl hover:-translate-y-2 transition duration-500">
-            <div class="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center mb-6">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-            </div>
-            <h3 class="text-xl font-bold mb-3">System Engineering</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-                Bridging the physical and digital. We design flawless signal flows, integrated video networks, and redundant hybrid architecture built for zero-fail environments.
-            </p>
-        </div>
+        <div class="surface-strong">
+            <div class="max-w-7xl mx-auto px-5 md:px-8 h-[3.75rem] md:h-[var(--nav-h)] flex items-center justify-between gap-3">
+                <a href="index.html" class="font-display text-lg font-bold tracking-tight text-white shrink-0 leading-tight">
+                    Pixel<span class="text-cine-accent"> Array</span>
+                </a>
 
-        <div class="glass p-10 rounded-xl hover:-translate-y-2 transition duration-500">
-            <div class="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center mb-6">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-            </div>
-            <h3 class="text-xl font-bold mb-3">Bespoke Software</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-                Purpose-built digital environments. We deploy custom control interfaces, interactive LED wall configurators, and proprietary web platforms for seamless audience engagement.
-            </p>
-        </div>
-    </section>
+                <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-cine-muted" aria-label="Primary">
+                    <a href="#main" class="hover:text-white transition-colors">Home</a>
 
-    <section id="pre-vis" class="py-20 px-8 max-w-5xl mx-auto">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold mb-4">Precision Pre-Visualization</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">Slide to compare our digital twin (left) with the live event reality (right). We excel in producing show-precise images and videos well before a roadcase enters the venue.</p>
-        </div>
+                    <div class="relative" data-dropdown>
+                        <button type="button" class="inline-flex items-center gap-1 hover:text-white transition-colors py-2" data-dropdown-btn aria-expanded="false" aria-haspopup="true" aria-controls="dropdown-production">
+                            Production
+                            <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div id="dropdown-production" class="nav-dropdown-panel absolute left-0 top-full pt-2 w-56 z-[80]" data-dropdown-panel role="menu">
+                            <div class="surface rounded-xl py-2 shadow-2xl border border-white/10">
+                                <a href="#mobile-studio" class="block px-4 py-2.5 text-sm text-white hover:bg-white/5" role="menuitem">Mobile studio production</a>
+                                <a href="#live-streaming" class="block px-4 py-2.5 text-sm text-white hover:bg-white/5" role="menuitem">Live &amp; streaming</a>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="relative w-full aspect-video rounded-xl overflow-hidden glass group">
-            
-          <img src="reality.png" alt="Live Event Reality" class="absolute inset-0 w-full h-full object-cover">
+                    <a href="#before-after" class="hover:text-white transition-colors">Photos / work</a>
+                    <a href="pay.html" class="hover:text-white transition-colors">Pay invoice</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                </nav>
 
-            <img src="render.png" alt="3D Render" id="render-layer" class="absolute inset-0 w-full h-full object-cover" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
-
-            <input type="range" min="0" max="100" value="50" id="comparison-slider" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20">
-
-            <div id="slider-divider" class="absolute top-0 bottom-0 w-1 bg-white z-10 pointer-events-none" style="left: 50%;">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                    <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l-4 4 4 4m8-8l4 4-4 4"></path>
-                    </svg>
+                <div class="flex items-center gap-2 md:gap-4">
+                    <a href="tel:+61436933306" class="hidden xl:inline-flex text-sm font-semibold text-white tabular-nums hover:text-cine-accent transition-colors">
+                        Call · <span class="text-cine-muted font-normal">+61 436 933 306</span>
+                    </a>
+                    <a href="#book" class="hidden md:inline-flex px-4 py-2 bg-cine-accent text-cine-bg text-sm font-semibold rounded-md hover:brightness-110 transition whitespace-nowrap">
+                        Book a meeting
+                    </a>
+                    <button type="button" class="lg:hidden p-2 rounded-md border border-white/10 text-white hover:bg-white/5" data-nav-open aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <footer id="contact" class="border-t border-gray-900 mt-20 py-20 text-center px-4">
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">Ready to scale your project?</h2>
-        <p class="text-gray-500 mb-10 max-w-lg mx-auto">Partner with dedicated engineers to design the future of your live and digital experiences.</p>
-        <a href="mailto:hello@yourdomain.com" class="px-10 py-4 bg-white text-black text-lg font-bold rounded hover:scale-105 transition transform inline-block">Start Building</a>
+    <header>
+        <div id="mobile-nav" class="nav-mobile-panel lg:hidden fixed top-0 right-0 bottom-0 w-[min(100%,22rem)] z-[70] surface border-l border-white/10 pt-24 px-6 py-8" data-nav-panel aria-hidden="true">
+            <button type="button" class="absolute top-4 right-5 p-2 text-cine-muted hover:text-white" data-nav-close aria-label="Close menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <nav class="flex flex-col gap-5 text-base font-medium text-white" aria-label="Mobile">
+                <a href="#main">Home</a>
+                <span class="text-xs uppercase tracking-wider text-cine-muted">Production</span>
+                <a href="#mobile-studio" class="pl-3 text-cine-muted hover:text-white">Mobile studio production</a>
+                <a href="#live-streaming" class="pl-3 text-cine-muted hover:text-white">Live &amp; streaming</a>
+                <a href="#before-after">Photos / work</a>
+                <a href="pay.html">Pay invoice</a>
+                <a href="#contact">Contact</a>
+                <a href="tel:+61436933306" class="text-cine-accent">Call +61 436 933 306</a>
+                <a href="#book" class="mt-4 inline-flex justify-center px-4 py-3 bg-cine-accent text-cine-bg font-semibold rounded-md">Book a meeting</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="hero-cinematic flex flex-col justify-center px-5 md:px-8 pt-28 sm:pt-36 pb-24 md:pb-32 relative">
+            <div class="hero-letterbox" aria-hidden="true"></div>
+            <div class="hero-letterbox hero-letterbox-bottom" aria-hidden="true"></div>
+
+            <div class="max-w-6xl mx-auto text-center relative z-10">
+                <h1 class="reveal font-display text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wide text-white/90 mb-6">
+                    Audio visual · Live production · Streamin<span class="font-sans">g</span>
+                </h1>
+                <p class="reveal font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.02] mb-8 text-white" style="transition-delay: 60ms">
+                    Elevate your<br>
+                    <span class="text-gradient">production experience.</span>
+                </p>
+                <p class="reveal text-lg md:text-xl text-cine-muted max-w-2xl mx-auto mb-6 font-light leading-relaxed" style="transition-delay: 120ms">
+                    Seamless audio visual production, including corporate, hybrid & livestreaming events, event design and technical planning.
+                </p>
+                <p class="reveal text-sm text-cine-muted/85 max-w-xl mx-auto mb-12" style="transition-delay: 150ms">
+                    Bespoke event software production, including attendee engagement, livestreaming platforms & event gamification.
+                </p>
+                <div class="reveal flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center" style="transition-delay: 180ms">
+                    <a href="#book" class="px-8 py-4 bg-white text-cine-bg font-semibold rounded-md hover:bg-zinc-200 transition text-center text-sm md:text-base">
+                        Book a meeting
+                    </a>
+                    <a href="#live-streaming" class="px-8 py-4 surface text-white font-semibold rounded-md hover:border-white/20 transition text-center text-sm md:text-base">
+                        Explore production
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="border-y border-white/[0.06] bg-cine-elevated/80 py-10 md:py-12" aria-label="Studio highlights">
+            <div class="max-w-7xl mx-auto px-5 md:px-8">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                    <div class="reveal text-center lg:text-left">
+                        <p class="font-display text-2xl md:text-3xl font-bold text-white tabular-nums">Render Production</p>
+                        <p class="text-sm text-cine-muted mt-1">Stills and flythroughs</p>
+                    </div>
+                    <div class="reveal text-center lg:text-left" style="transition-delay: 50ms">
+                        <p class="font-display text-3xl md:text-4xl font-bold text-white tabular-nums">Hybrid</p>
+                        <p class="text-sm text-cine-muted mt-1">Zoom, Teams and unique platforms</p>
+                    </div>
+                    <div class="reveal text-center lg:text-left" style="transition-delay: 100ms">
+                        <p class="font-display text-3xl md:text-4xl font-bold text-white tabular-nums">Secure</p>
+                        <p class="text-sm text-cine-muted mt-1">Private links &amp; password gates</p>
+                    </div>
+                    <div class="reveal text-center lg:text-left" style="transition-delay: 150ms">
+                        <p class="font-display text-3xl md:text-4xl font-bold text-white tabular-nums">Archive</p>
+                        <p class="text-sm text-cine-muted mt-1">ISO record &amp; deliverables</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mobile-studio" class="py-24 md:py-32 px-5 md:px-8 max-w-7xl mx-auto scroll-mt-28">
+            <div class="max-w-3xl mb-14 md:mb-16 reveal">
+                <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">On Location</p>
+                <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-5">Mobile studio production</h2>
+                <p class="text-cine-muted text-lg leading-relaxed">
+                    We bring broadcast-grade livestreaming production directly to your existing events. Whether it's a corporate office, a boutique event space, or an outdoor venue, we deploy scalable studio environments that transform any space into a global transmission hub.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-12">
+                <article class="reveal service-spotlight surface rounded-2xl p-8 md:p-10 lg:p-12">
+                    <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-4">Corporate & Office Takeovers</h3>
+                    <p class="text-cine-muted leading-relaxed mb-6">
+                        Turn boardrooms and foyers into multi-camera studios. We handle lighting control, audio mixing in reflective spaces, and discrete cable management to ensure your office looks like a high-end set without disrupting the daily workflow.
+                    </p>
+                </article>
+                <article class="reveal service-spotlight surface rounded-2xl p-8 md:p-10 lg:p-12" style="transition-delay: 80ms">
+                    <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-4">Event Space Integration</h3>
+                    <p class="text-cine-muted leading-relaxed mb-6">
+                        Seamlessly integrating with in-house AV. We tap into venue vision and audio feeds to blend the live, in-room experience with a polished, directed stream for your remote audience, ensuring no one feels like a second-class attendee.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="live-streaming" class="py-24 md:py-32 px-5 md:px-8 max-w-7xl mx-auto border-t border-white/[0.06] scroll-mt-28">
+            <div class="max-w-3xl mb-14 md:mb-16 reveal">
+                <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Production</p>
+                <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-5">What we cover</h2>
+                <p class="text-cine-muted text-lg leading-relaxed">
+                    Organized like a broadcast facility menu — pick the lane that matches your show. Every line item maps to a documented deliverable and on-site operator.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10 md:gap-8 reveal" style="transition-delay: 60ms">
+                <div class="surface rounded-2xl p-8 md:p-9">
+                    <h3 class="font-display text-lg font-bold text-white mb-6 pb-4 border-b border-white/[0.08]">Live video &amp; hybrid</h3>
+                    <nav aria-label="Live services">
+                        <a href="#contact" class="service-list-link">Zoom &amp; Teams live production</a>
+                        <a href="#contact" class="service-list-link">Corporate &amp; gala hybrid events</a>
+                        <a href="#contact" class="service-list-link">Webcasting &amp; multi-bitrate ladders</a>
+                        <a href="#contact" class="service-list-link">Custom landing pages &amp; registration</a>
+                        <a href="#contact" class="service-list-link">Private &amp; password-protected streams</a>
+                        <a href="#contact" class="service-list-link">Recording, ISOs &amp; archiving</a>
+                    </nav>
+                </div>
+                <div class="surface rounded-2xl p-8 md:p-9 ring-1 ring-cine-accent/15">
+                    <h3 class="font-display text-lg font-bold text-white mb-6 pb-4 border-b border-white/[0.08]">Studio · 3D · Content</h3>
+                    <nav aria-label="Studio services">
+                        <a href="#services" class="service-list-link">Photoreal 3D rendering</a>
+                        <a href="#services" class="service-list-link">Visual content production</a>
+                        <a href="#contact" class="service-list-link">Remote presenter capture</a>
+                        <a href="#contact" class="service-list-link">Video post &amp; color finishing</a>
+                        <a href="#contact" class="service-list-link">Graphic design &amp; show branding</a>
+                        <a href="#contact" class="service-list-link">Audio mix &amp; mastering</a>
+                    </nav>
+                </div>
+                <div class="surface rounded-2xl p-8 md:p-9">
+                    <h3 class="font-display text-lg font-bold text-white mb-6 pb-4 border-b border-white/[0.08]">Engineering &amp; rental</h3>
+                    <nav aria-label="Engineering services">
+                        <a href="#contact" class="service-list-link">Streaming encoders &amp; bonding</a>
+                        <a href="#contact" class="service-list-link">AV production packages</a>
+                        <a href="#contact" class="service-list-link">Network, IT &amp; redundancy design</a>
+                        <a href="#contact" class="service-list-link">Camera chains &amp; IMAG</a>
+                        <a href="#contact" class="service-list-link">RF &amp; backup internet paths</a>
+                        <a href="#engineering" class="service-list-link">Show-day technical direction</a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-24 md:py-32 px-5 md:px-8 max-w-7xl mx-auto border-t border-white/[0.06] scroll-mt-28">
+            <div class="max-w-3xl mb-16 md:mb-20 reveal">
+                <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Studio flagship</p>
+                <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-5">3D Renders &amp; content production</h2>
+                <p class="text-cine-muted text-lg leading-relaxed">
+                    Photoreal <strong class="text-white font-medium">3D rendering</strong> for creative sign-off, alongside high-end <strong class="text-white font-medium">content production</strong> to ensure your visual messaging is as impactful as the technology delivering it.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-12">
+                <article class="reveal service-spotlight surface rounded-2xl p-8 md:p-10 lg:p-12 ring-1 ring-cine-accent/20">
+                    <div class="flex items-start justify-between gap-4 mb-8">
+                        <span class="text-xs font-bold uppercase tracking-widest text-cine-accent">Flagship</span>
+                        <span class="text-xs text-cine-muted font-mono">01</span>
+                    </div>
+                    <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-4">3D rendering</h3>
+                    <p class="text-cine-muted leading-relaxed mb-6">
+                        Photoreal environments, camera-accurate lenses, and lighting that matches your stage plot. Hero frames, fly-throughs, and locked previz plates before load-in.
+                    </p>
+                    <ul class="space-y-3 text-sm text-cine-muted border-t border-white/[0.06] pt-6">
+                        <li class="flex gap-2"><span class="text-cine-accent shrink-0">·</span> Unreal / Cinema 4D / Blender pipelines</li>
+                        <li class="flex gap-2"><span class="text-cine-accent shrink-0">·</span> Color-managed EXR / ProRes masters</li>
+                        <li class="flex gap-2"><span class="text-cine-accent shrink-0">·</span> Director review &amp; iteration rounds</li>
+                    </ul>
+                </article>
+
+                <article class="reveal service-spotlight surface rounded-2xl p-8 md:p-10 lg:p-12" style="transition-delay: 80ms">
+                    <div class="flex items-start justify-between gap-4 mb-8">
+                        <span class="text-xs font-bold uppercase tracking-widest text-cine-accent">Flagship</span>
+                        <span class="text-xs text-cine-muted font-mono">02</span>
+                    </div>
+                    <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-4">Content Production</h3>
+                    <p class="text-cine-muted leading-relaxed mb-6">
+                        High-fidelity visual assets tailored for the big screen. From dynamic motion graphics and brand stings to bespoke video packages that captivate audiences.
+                    </p>
+                    <ul class="space-y-3 text-sm text-cine-muted border-t border-white/[0.06] pt-6">
+                        <li class="flex gap-2"><span class="text-cine-accent shrink-0">·</span> Motion graphics &amp; animation</li>
+                        <li class="flex gap-2"><span class="text-cine-accent shrink-0">·</span> Ultra-widescreen &amp; custom aspect ratios</li>
+                        <li class="flex gap-2"><span class="text-cine-accent shrink-0">·</span> Seamless playback integration</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 reveal" style="transition-delay: 100ms">
+                <article class="surface rounded-xl p-7">
+                    <h4 class="font-display font-semibold text-white mb-2">Hybrid streaming</h4>
+                    <p class="text-sm text-cine-muted leading-relaxed">SRT / RTMP / WebRTC paths, return feeds, and encoder redundancy — documented for your network team.</p>
+                </article>
+                <article class="surface rounded-xl p-7">
+                    <h4 class="font-display font-semibold text-white mb-2">System engineering</h4>
+                    <p class="text-sm text-cine-muted leading-relaxed">Signal flow and failover for zero-drama show days and clean union handoff.</p>
+                </article>
+                <article class="surface rounded-xl p-7">
+                    <h4 class="font-display font-semibold text-white mb-2">Event software</h4>
+                    <p class="text-sm text-cine-muted leading-relaxed">Touch panels, OSC/MIDI bridges, custom web layers, and digital attendee engagement tools.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-20 px-5 md:px-8 bg-cine-elevated/60 border-y border-white/[0.06]">
+            <div class="max-w-4xl mx-auto text-center reveal">
+                <p class="text-lg md:text-xl text-cine-muted leading-relaxed">
+                    Discover production solutions tailored to your venue — <strong class="text-white font-medium">captivating visuals</strong>, <strong class="text-white font-medium">seamless execution</strong>, and operators who stay calm when the countdown hits zero.
+                </p>
+                <a href="#book" class="inline-flex mt-8 px-8 py-3 bg-cine-accent text-cine-bg font-bold rounded-md hover:brightness-110 transition text-sm">
+                    Schedule a consult
+                </a>
+            </div>
+        </section>
+
+        <section id="process" class="py-24 md:py-32 px-5 md:px-8 border-t border-white/[0.06] bg-[#050506] scroll-mt-28">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+                    <div class="reveal">
+                        <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Process</p>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-5">From brief to transmission</h2>
+                        <p class="text-cine-muted text-lg leading-relaxed mb-10">
+                            One specification package travels from previz to LED processor — versioned, reviewable, and built for the people who actually push buttons on show day.
+                        </p>
+                        <ol class="space-y-8">
+                            <li class="flex gap-5">
+                                <span class="font-display text-2xl font-bold text-cine-accent/80 shrink-0">1</span>
+                                <div>
+                                    <h3 class="font-semibold text-white mb-1">Discovery &amp; site capture</h3>
+                                    <p class="text-sm text-cine-muted leading-relaxed">Measurements, lensing, and references in one source of truth.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-5">
+                                <span class="font-display text-2xl font-bold text-cine-accent/80 shrink-0">2</span>
+                                <div>
+                                    <h3 class="font-semibold text-white mb-1">Previz &amp; LED spec lock</h3>
+                                    <p class="text-sm text-cine-muted leading-relaxed">Signed renders and wall maps before content scales and trucks roll.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-5">
+                                <span class="font-display text-2xl font-bold text-cine-accent/80 shrink-0">3</span>
+                                <div>
+                                    <h3 class="font-semibold text-white mb-1">Load-in &amp; show</h3>
+                                    <p class="text-sm text-cine-muted leading-relaxed">Alignment, line checks, and hybrid paths verified against the same docs.</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="reveal surface rounded-2xl p-6 md:p-8 font-mono text-[13px] leading-relaxed overflow-x-auto" style="transition-delay: 100ms" aria-label="Example specification excerpt">
+                        <div class="flex items-center justify-between mb-4 pb-4 border-b border-white/[0.06]">
+                            <span class="text-cine-muted">pixel_array_show_spec.yaml</span>
+                            <span class="text-xs text-cine-accent">v2.4 · locked</span>
+                        </div>
+                        <pre class="spec whitespace-pre-wrap text-left">project:
+  name: "North Hall Keynote"
+  deliverables:
+    - type: 3d_render
+      resolution: "7680x2160"
+      color_space: "ACEScg"
+    - type: led_map
+      processor: "disguise gx2c"
+      cabinet: "ROE CB5 2.6mm"
+      total_pixels: 9830400
+  hybrid:
+    primary_path: "SRT"
+    backup_path: "RTMP"
+    latency_target_ms: 800
+  review:
+    rounds_included: 3
+    approval_gate: "creative_director"</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="before-after" class="py-24 md:py-32 px-5 md:px-8 border-t border-white/[0.06] scroll-mt-28">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 md:mb-16 reveal">
+                    <div class="max-w-2xl">
+                        <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Photos / work</p>
+                        <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-4">Before &amp; after</h2>
+                        <p class="text-cine-muted text-lg leading-relaxed">
+                            Site photography next to the Pixel Array pre-vis render. Drag the slider to compare alignment and lighting intent.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 text-xs font-medium uppercase tracking-wider text-cine-muted">
+                        <span class="px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03]">Site reality</span>
+                        <span class="px-3 py-1.5 rounded-full border border-cine-accent/30 bg-cine-accent/10 text-cine-accent">Pre-vis render</span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
+                    <figure class="reveal before-after-card surface rounded-2xl overflow-hidden">
+                        <div class="aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-zinc-900">
+                            <img src="reality.png" alt="Venue photograph — raw site conditions" class="w-full h-full object-cover" width="1200" height="750" loading="lazy">
+                        </div>
+                        <figcaption class="p-6 md:p-8 border-t border-white/[0.06]">
+                            <span class="text-xs font-bold uppercase tracking-widest text-cine-muted">Before</span>
+                            <h3 class="font-display text-xl font-semibold text-white mt-2 mb-2">Reality on site</h3>
+                            <p class="text-cine-muted text-sm leading-relaxed">Reference photography anchors scale and rigging.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="reveal before-after-card surface rounded-2xl overflow-hidden ring-1 ring-cine-accent/25" style="transition-delay: 80ms">
+                        <div class="aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-zinc-900">
+                            <img src="render.png" alt="Pixel Array pre-visualization render" class="w-full h-full object-cover" width="1200" height="750" loading="lazy">
+                        </div>
+                        <figcaption class="p-6 md:p-8 border-t border-white/[0.06]">
+                            <span class="text-xs font-bold uppercase tracking-widest text-cine-accent">After</span>
+                            <h3 class="font-display text-xl font-semibold text-white mt-2 mb-2">Pre-visualization</h3>
+                            <p class="text-cine-muted text-sm leading-relaxed">Show-ready look for LED authoring and sign-off.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div class="max-w-4xl mx-auto reveal" style="transition-delay: 120ms">
+                    <p class="text-center text-sm text-cine-muted mb-6">Interactive comparison — drag</p>
+                    <div class="relative w-full aspect-video rounded-2xl overflow-hidden surface ring-1 ring-white/[0.08]">
+                        <img src="reality.png" alt="" class="absolute inset-0 w-full h-full object-cover" aria-hidden="true">
+                        <img src="render.png" alt="" id="render-layer" class="absolute inset-0 w-full h-full object-cover" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" aria-hidden="true">
+                        <label for="comparison-slider" class="sr-only">Compare site photo and render</label>
+                        <input type="range" min="0" max="100" value="50" id="comparison-slider" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" aria-label="Drag to compare before and after">
+                        <div class="absolute bottom-4 left-4 z-10 pointer-events-none text-xs font-semibold uppercase tracking-wider text-white/90 drop-shadow-lg">Render</div>
+                        <div class="absolute bottom-4 right-4 z-10 pointer-events-none text-xs font-semibold uppercase tracking-wider text-white/90 drop-shadow-lg">Reality</div>
+                        <div id="slider-divider" class="absolute top-0 bottom-0 w-0.5 bg-white z-10 pointer-events-none shadow-[0_0_24px_rgba(0,0,0,0.7)]" style="left: 50%;">
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
+                                <svg class="w-5 h-5 text-cine-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l-4 4 4 4m8-8l4 4-4 4"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="py-24 md:py-32 px-5 md:px-8 border-t border-white/[0.06] bg-cine-elevated/40 scroll-mt-28">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                    <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Testimonials</p>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">What clients say</h2>
+                    <p class="text-cine-muted">Trusted on corporate keynotes, galas, and high-stakes hybrid broadcasts.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <blockquote class="reveal testimonial-card surface rounded-2xl p-8 pt-12">
+                        <p class="text-cine-muted text-sm leading-relaxed mb-6">“Rock-solid streaming and AV — calm under pressure, clear backups, and no drama on show day.”</p>
+                        <footer class="text-xs text-white font-medium">Corporate production lead</footer>
+                    </blockquote>
+                    <blockquote class="reveal testimonial-card surface rounded-2xl p-8 pt-12" style="transition-delay: 60ms">
+                        <p class="text-cine-muted text-sm leading-relaxed mb-6">“They sit in the rare overlap of creative taste and technical depth. Prev looked like the room before we ever loaded in.”</p>
+                        <footer class="text-xs text-white font-medium">Creative director</footer>
+                    </blockquote>
+                    <blockquote class="reveal testimonial-card surface rounded-2xl p-8 pt-12" style="transition-delay: 120ms">
+                        <p class="text-cine-muted text-sm leading-relaxed mb-6">“Communication and documentation were as strong as the picture. We’ll book them again without hesitation.”</p>
+                        <footer class="text-xs text-white font-medium">Event agency partner</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section id="pay" class="py-20 md:py-28 px-5 md:px-8 border-t border-white/[0.06] scroll-mt-28">
+            <div class="max-w-5xl mx-auto reveal surface rounded-2xl p-10 md:p-14 flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+                <div class="max-w-xl">
+                    <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-3">Clients</p>
+                    <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-4">Pay an invoice</h2>
+                    <p class="text-cine-muted leading-relaxed">
+                        Card payments through Stripe. Reference your invoice number at checkout so finance can reconcile instantly.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 shrink-0">
+                    <a href="pay.html" class="inline-flex justify-center px-8 py-4 bg-cine-accent text-cine-bg font-bold rounded-md hover:brightness-110 transition text-center">
+                        Pay online
+                    </a>
+                    <a href="mailto:accounts@pixelarray.com.au" class="inline-flex justify-center px-8 py-4 border border-white/15 text-white font-semibold rounded-md hover:bg-white/5 transition text-center">
+                        Email accounts
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="engineering" class="py-20 md:py-24 px-5 md:px-8 max-w-5xl mx-auto scroll-mt-28">
+            <div class="reveal surface rounded-2xl p-10 md:p-14 text-center">
+                <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-4">Show-day engineering</h2>
+                <p class="text-cine-muted max-w-xl mx-auto leading-relaxed mb-8">
+                    Spares, failover, and crew handoff packages — part of the quote, not a fire drill at rehearsal.
+                </p>
+                <a href="#contact" class="inline-flex items-center gap-2 text-cine-accent font-semibold hover:underline underline-offset-4">
+                    Discuss your rider
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="border-t border-white/[0.06] bg-cine-bg pt-16 md:pt-20 pb-10 px-5 md:px-8 scroll-mt-28">
+        <div class="max-w-7xl mx-auto">
+            <div id="book" class="rounded-2xl surface p-10 md:p-12 mb-16 scroll-mt-32">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-3">Contact</p>
+                        <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-4">Book a meeting</h2>
+                        <p class="text-cine-muted leading-relaxed mb-6">
+                            One-on-one to scope venue, dates, deliverables, and budget. Online scheduling will be available here once connected.
+                        </p>
+                        <a href="#book" class="inline-flex px-8 py-4 bg-white text-cine-bg font-bold rounded-md hover:bg-zinc-200 transition">
+                            Open calendar
+                        </a>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between gap-4 border-b border-white/[0.06] pb-4">
+                            <span class="text-cine-muted">Phone</span>
+                            <a href="tel:+61436933306" class="text-white font-medium hover:text-cine-accent transition-colors">+61 436 933 306</a>
+                        </div>
+                        <div class="flex justify-between gap-4 border-b border-white/[0.06] pb-4">
+                            <span class="text-cine-muted">General</span>
+                            <a href="mailto:hello@pixelarray.com.au" class="text-white font-medium hover:text-cine-accent transition-colors text-right break-all">hello@pixelarray.com.au</a>
+                        </div>
+                        <div class="flex justify-between gap-4 pb-1">
+                            <span class="text-cine-muted">Accounts</span>
+                            <a href="mailto:accounts@pixelarray.com.au" class="text-white font-medium hover:text-cine-accent transition-colors text-right break-all">accounts@pixelarray.com.au</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-8 mb-16">
+                <div class="col-span-2 md:col-span-1">
+                    <p class="font-display text-lg font-bold text-white mb-1">Pixel<span class="text-cine-accent"> Array</span></p>
+                    <p class="text-sm text-cine-muted leading-relaxed mt-4">Audio visual · Live production · Streaming</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="#" class="text-cine-muted hover:text-white transition-colors" aria-label="LinkedIn"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                        <a href="#" class="text-cine-muted hover:text-white transition-colors" aria-label="Instagram"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                        <a href="#" class="text-cine-muted hover:text-white transition-colors" aria-label="YouTube"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-white mb-4">Production</p>
+                    <ul class="space-y-3 text-sm text-cine-muted">
+                        <li><a href="#mobile-studio" class="hover:text-white transition-colors">Mobile studio production</a></li>
+                        <li><a href="#live-streaming" class="hover:text-white transition-colors">Live &amp; streaming</a></li>
+                        <li><a href="#before-after" class="hover:text-white transition-colors">Photos / work</a></li>
+                        <li><a href="#process" class="hover:text-white transition-colors">Process</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-white mb-4">Services</p>
+                    <ul class="space-y-3 text-sm text-cine-muted">
+                        <li><a href="#services" class="hover:text-white transition-colors">3D rendering</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Content Production</a></li>
+                        <li><a href="#live-streaming" class="hover:text-white transition-colors">Hybrid events</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-white mb-4">Clients</p>
+                    <ul class="space-y-3 text-sm text-cine-muted">
+                        <li><a href="pay.html" class="hover:text-white transition-colors">Pay invoice</a></li>
+                        <li><a href="#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
+                        <li><a href="#book" class="hover:text-white transition-colors">Book a meeting</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-white mb-4">Company</p>
+                    <ul class="space-y-3 text-sm text-cine-muted">
+                        <li><a href="#contact" class="hover:text-white transition-colors">About / contact</a></li>
+                        <li><a href="#policies" class="hover:text-white transition-colors">Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="policies" class="border-t border-white/[0.06] py-12 scroll-mt-32">
+                <h3 class="sr-only">Policies</h3>
+                <div class="grid md:grid-cols-3 gap-8 text-xs text-cine-muted leading-relaxed">
+                    <div>
+                        <p class="text-white font-semibold text-sm mb-2">Terms &amp; conditions</p>
+                        <p>Engagements are governed by the laws of Victoria, Australia. Written quotes set scope, inclusions, crew call times, and technical specifications; acceptance constitutes agreement to payment milestones, cancellation and postponement fees as stated on the quote, and reasonable directions on site. Hire of equipment and labour is on a dry-hire / operated basis as agreed; loss, damage, or unauthorised reconfiguration may be charged at replacement or reinstatement cost. Liability is limited to the fees paid for the affected deliverables except where non-excludable under the Australian Consumer Law.</p>
+                    </div>
+                    <div>
+                        <p class="text-white font-semibold text-sm mb-2">Privacy policy</p>
+                        <p>We collect personal and business information only as needed to quote, contract, deliver productions, process payments (including through Stripe), and meet legal obligations, in line with the <span class="text-white/90">Privacy Act 1988</span> (Cth) and the Australian Privacy Principles. Data is stored securely, shared only with subcontractors who need it for your event, and retained only as long as operational or legal requirements demand. You may request access or correction of your information by contacting us at the email above.</p>
+                    </div>
+                    <div>
+                        <p class="text-white font-semibold text-sm mb-2">Return policy</p>
+                        <p>Hired equipment must be returned on the agreed date, in the same condition as supplied (fair wear excepted), with all cases, cables, and accessories accounted for. Late return or missing items may incur additional hire days or replacement charges per the rental agreement. For production services, deposits and pre-purchased blocks are applied to delivered work; refunds or credits for unused portions, weather or client-driven cancellations, are handled strictly according to the schedule attached to your invoice or contract.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/[0.06] pt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <a href="mailto:hello@pixelarray.com.au" class="inline-flex justify-center sm:justify-start px-6 py-3 border border-white/15 text-white font-semibold rounded-md hover:bg-white/5 transition text-sm">
+                    Email Pixel Array
+                </a>
+                <p class="text-center sm:text-right text-xs text-cine-muted/60">© <span id="y"></span> Pixel Array.</p>
+            </div>
+        </div>
     </footer>
 
-    <script>
-        const slider = document.getElementById('comparison-slider');
-        const renderLayer = document.getElementById('render-layer');
-        const divider = document.getElementById('slider-divider');
-
-        slider.addEventListener('input', (e) => {
-            const value = e.target.value;
-            // Updates the visible area of the top image
-            renderLayer.style.clipPath = `polygon(0 0, ${value}% 0, ${value}% 100%, 0 100%)`;
-            // Moves the physical divider line
-            divider.style.left = `${value}%`;
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

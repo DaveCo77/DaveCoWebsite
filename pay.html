@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay an invoice · Pixel Array</title>
+    <meta name="description" content="Pay your Pixel Array invoice securely online with Stripe.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+</head>
+<body class="cinematic antialiased overflow-x-hidden min-h-screen flex flex-col">
+
+    <div class="cine-vignette" aria-hidden="true"></div>
+    <div class="cine-grain" aria-hidden="true"></div>
+
+    <a href="#main" class="sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-md">Skip to content</a>
+
+    <div class="fixed top-0 left-0 right-0 z-[60]" data-site-header>
+        <div class="utility-bar hidden sm:block text-cine-muted">
+            <div class="max-w-7xl mx-auto px-5 md:px-8 h-9 flex items-center justify-end gap-6">
+                <a href="index.html#policies" class="hover:text-white transition-colors">Terms &amp; conditions</a>
+                <a href="index.html#policies" class="hover:text-white transition-colors">Privacy policy</a>
+                <a href="index.html#policies" class="hover:text-white transition-colors">Return policy</a>
+            </div>
+        </div>
+        <div class="surface-strong">
+            <div class="max-w-7xl mx-auto px-5 md:px-8 h-[3.75rem] md:h-[var(--nav-h)] flex items-center justify-between gap-4">
+                <a href="index.html" class="font-display text-lg font-bold tracking-tight text-white leading-tight">
+                    Pixel<span class="text-cine-accent"> Array</span>
+                </a>
+                <nav class="flex items-center gap-6 text-sm font-medium text-cine-muted" aria-label="Primary">
+                    <a href="index.html#live-streaming" class="hover:text-white transition-colors hidden sm:inline">Production</a>
+                    <a href="index.html#pay" class="hover:text-white transition-colors">Pay invoice</a>
+                    <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <main id="main" class="flex-1 px-5 md:px-8 pt-28 sm:pt-32 pb-16 md:pb-24">
+        <div class="max-w-lg mx-auto">
+            <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center">Clients</p>
+            <h1 class="font-display text-3xl md:text-4xl font-bold text-white text-center mb-3">Pay an invoice</h1>
+            <p class="text-cine-muted text-center text-sm leading-relaxed mb-10">
+                Card payments are processed securely online. Your invoice number is attached to the transaction for our accounting team.
+            </p>
+
+            <form id="pay-form" class="surface rounded-2xl p-8 md:p-10 space-y-6" novalidate>
+                <div>
+                    <label for="invoice" class="block text-xs font-semibold uppercase tracking-wider text-cine-muted mb-2">Invoice number <span class="text-red-400/90">*</span></label>
+                    <input type="text" id="invoice" name="invoice" required autocomplete="off" placeholder="e.g. PA-2026-0142"
+                        class="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/10 text-white placeholder:text-white/25 focus:outline-none focus:ring-2 focus:ring-cine-accent/40 focus:border-cine-accent/50">
+                    <p class="mt-2 text-xs text-cine-muted">Use the invoice number exactly as shown on your PDF.</p>
+                </div>
+
+                <div>
+                    <label for="company" class="block text-xs font-semibold uppercase tracking-wider text-cine-muted mb-2">Company / project (optional)</label>
+                    <input type="text" id="company" name="company" autocomplete="organization"
+                        class="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/10 text-white placeholder:text-white/25 focus:outline-none focus:ring-2 focus:ring-cine-accent/40 focus:border-cine-accent/50"
+                        placeholder="Production company name">
+                </div>
+
+                <div class="rounded-lg bg-cine-accent/10 border border-cine-accent/20 p-4 text-sm text-cine-muted leading-relaxed">
+                    <p class="text-white font-medium mb-1">Before you pay</p>
+                    <ul class="list-disc list-inside space-y-1 text-xs md:text-sm">
+                        <li>Confirm the amount matches your invoice.</li>
+                        <li>For purchase orders or wire transfers, email <a href="mailto:accounts@pixelarray.com.au" class="text-cine-accent hover:underline">accounts@pixelarray.com.au</a>.</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-cine-accent text-cine-bg font-bold rounded-md hover:brightness-110 transition">
+                    Continue to secure payment
+                </button>
+
+                <p id="pay-config-msg" class="hidden text-center text-sm text-amber-200/90 bg-amber-500/10 border border-amber-500/20 rounded-lg px-4 py-3">
+                    Set your Stripe Payment Link in <code class="text-xs text-white/80">pay.html</code> (search for <code class="text-xs text-white/80">STRIPE_PAYMENT_LINK</code>).
+                </p>
+            </form>
+
+            <p class="text-center text-xs text-cine-muted/70 mt-8">
+                <a href="index.html" class="hover:text-white transition-colors">← Back to Pixel Array</a>
+            </p>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/[0.06] py-8 px-5 md:px-8 text-center text-xs text-cine-muted/60 shrink-0">
+        © <span id="y"></span> Pixel Array · <a href="mailto:accounts@pixelarray.com.au" class="hover:text-white transition-colors">accounts@pixelarray.com.au</a>
+    </footer>
+
+    <script>
+        var STRIPE_PAYMENT_LINK =  'https://buy.stripe.com/fZu5kxfpj2592cb4q9bwk00';
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        (function () {
+            var form = document.getElementById('pay-form');
+            var msg = document.getElementById('pay-config-msg');
+            if (!form) return;
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var inv = document.getElementById('invoice').value.trim();
+                var co = document.getElementById('company').value.trim();
+                if (!inv) return;
+
+                var base = typeof STRIPE_PAYMENT_LINK === 'string' ? STRIPE_PAYMENT_LINK.trim() : '';
+                if (!base) {
+                    msg.classList.remove('hidden');
+                    msg.focus();
+                    return;
+                }
+
+                var url;
+                try {
+                    url = new URL(base);
+                } catch (err) {
+                    msg.classList.remove('hidden');
+                    return;
+                }
+
+                var ref = co ? inv + ' · ' + co : inv;
+                url.searchParams.set('client_reference_id', ref);
+
+                window.location.href = url.toString();
+            });
+        })();
+    </script>
+</body>
+</html>
