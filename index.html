@@ -50,13 +50,13 @@
                         </div>
                     </div>
 
-                    <a href="#before-after" class="hover:text-white transition-colors">Photos / work</a>
+                    <a href="#services" class="hover:text-white transition-colors">3D Renders</a>
                     <a href="pay.html" class="hover:text-white transition-colors">Pay invoice</a>
                     <a href="#contact" class="hover:text-white transition-colors">Contact</a>
                 </nav>
 
                 <div class="flex items-center gap-2 md:gap-4">
-                    <a href="tel:Coming Soon!" class="hidden xl:inline-flex text-sm font-semibold text-white tabular-nums hover:text-cine-accent transition-colors">
+                    <a href="tel:+61436933306" class="hidden xl:inline-flex text-sm font-semibold text-white tabular-nums hover:text-cine-accent transition-colors">
                         Call · <span class="text-cine-muted font-normal">+61 436 933 306</span>
                     </a>
                     <a href="#book" class="hidden md:inline-flex px-4 py-2 bg-cine-accent text-cine-bg text-sm font-semibold rounded-md hover:brightness-110 transition whitespace-nowrap">
@@ -80,10 +80,10 @@
                 <span class="text-xs uppercase tracking-wider text-cine-muted">Production</span>
                 <a href="#mobile-studio" class="pl-3 text-cine-muted hover:text-white">Mobile studio production</a>
                 <a href="#live-streaming" class="pl-3 text-cine-muted hover:text-white">Live &amp; streaming</a>
-                <a href="#before-after">Photos / work</a>
+                <a href="#services">3D Renders</a>
                 <a href="pay.html">Pay invoice</a>
                 <a href="#contact">Contact</a>
-                <a href="tel:+61436933306" class="text-cine-accent">Call +61 436 933 306</a>
+                <a href="tel:Coming Soon!" class="text-cine-accent">Call +61 436 933 306</a>
                 <a href="#book" class="mt-4 inline-flex justify-center px-4 py-3 bg-cine-accent text-cine-bg font-semibold rounded-md">Book a meeting</a>
             </nav>
         </div>
@@ -283,65 +283,6 @@
             </div>
         </section>
 
-        <section id="before-after" class="py-24 md:py-32 px-5 md:px-8 border-t border-white/[0.06] scroll-mt-28">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 md:mb-16 reveal">
-                    <div class="max-w-2xl">
-                        <p class="text-cine-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">Photos / work</p>
-                        <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-4">Before &amp; after</h2>
-                        <p class="text-cine-muted text-lg leading-relaxed">
-                            Site photography next to the Pixel Array pre-vis render. Drag the slider to compare alignment and lighting intent.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-3 text-xs font-medium uppercase tracking-wider text-cine-muted">
-                        <span class="px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03]">Site reality</span>
-                        <span class="px-3 py-1.5 rounded-full border border-cine-accent/30 bg-cine-accent/10 text-cine-accent">Pre-vis render</span>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
-                    <figure class="reveal before-after-card surface rounded-2xl overflow-hidden">
-                        <div class="aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-zinc-900">
-                            <img src="reality.png" alt="Venue photograph — raw site conditions" class="w-full h-full object-cover" width="1200" height="750" loading="lazy">
-                        </div>
-                        <figcaption class="p-6 md:p-8 border-t border-white/[0.06]">
-                            <span class="text-xs font-bold uppercase tracking-widest text-cine-muted">Before</span>
-                            <h3 class="font-display text-xl font-semibold text-white mt-2 mb-2">Reality on site</h3>
-                            <p class="text-cine-muted text-sm leading-relaxed">Reference photography anchors scale and rigging.</p>
-                        </figcaption>
-                    </figure>
-
-                    <figure class="reveal before-after-card surface rounded-2xl overflow-hidden ring-1 ring-cine-accent/25" style="transition-delay: 80ms">
-                        <div class="aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-zinc-900">
-                            <img src="render.png" alt="Pixel Array pre-visualization render" class="w-full h-full object-cover" width="1200" height="750" loading="lazy">
-                        </div>
-                        <figcaption class="p-6 md:p-8 border-t border-white/[0.06]">
-                            <span class="text-xs font-bold uppercase tracking-widest text-cine-accent">After</span>
-                            <h3 class="font-display text-xl font-semibold text-white mt-2 mb-2">Pre-visualization</h3>
-                            <p class="text-cine-muted text-sm leading-relaxed">Show-ready look for LED authoring and sign-off.</p>
-                        </figcaption>
-                    </figure>
-                </div>
-
-                <div class="max-w-4xl mx-auto reveal" style="transition-delay: 120ms">
-                    <p class="text-center text-sm text-cine-muted mb-6">Interactive comparison — drag</p>
-                    <div class="relative w-full aspect-video rounded-2xl overflow-hidden surface ring-1 ring-white/[0.08]">
-                        <img src="reality.png" alt="" class="absolute inset-0 w-full h-full object-cover" aria-hidden="true">
-                        <img src="render.png" alt="" id="render-layer" class="absolute inset-0 w-full h-full object-cover" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" aria-hidden="true">
-                        <label for="comparison-slider" class="sr-only">Compare site photo and render</label>
-                        <input type="range" min="0" max="100" value="50" id="comparison-slider" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" aria-label="Drag to compare before and after">
-                        <div class="absolute bottom-4 left-4 z-10 pointer-events-none text-xs font-semibold uppercase tracking-wider text-white/90 drop-shadow-lg">Render</div>
-                        <div class="absolute bottom-4 right-4 z-10 pointer-events-none text-xs font-semibold uppercase tracking-wider text-white/90 drop-shadow-lg">Reality</div>
-                        <div id="slider-divider" class="absolute top-0 bottom-0 w-0.5 bg-white z-10 pointer-events-none shadow-[0_0_24px_rgba(0,0,0,0.7)]" style="left: 50%;">
-                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
-                                <svg class="w-5 h-5 text-cine-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l-4 4 4 4m8-8l4 4-4 4"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <footer id="contact" class="border-t border-white/[0.06] bg-cine-bg pt-16 md:pt-20 pb-10 px-5 md:px-8 scroll-mt-28">
@@ -386,7 +327,6 @@
                     <ul class="space-y-3 text-sm text-cine-muted">
                         <li><a href="#mobile-studio" class="hover:text-white transition-colors">Mobile studio production</a></li>
                         <li><a href="#live-streaming" class="hover:text-white transition-colors">Live &amp; streaming</a></li>
-                        <li><a href="#before-after" class="hover:text-white transition-colors">Photos / work</a></li>
                     </ul>
                 </div>
                 <div>
