@@ -1,48 +1,119 @@
-<main id="main" class="bg-slate-950 relative overflow-hidden">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud-Based Seating Chart Software | Pixel Array</title>
+    <meta name="description" content="Stop managing corporate galas on a broken spreadsheet. A cloud-based seating chart and real-time venue kiosk provisioner built specifically for live event professionals.">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
+    <link rel="stylesheet" href="css/main.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
 
-    <section class="relative pt-32 pb-20 sm:pt-40 sm:pb-24 px-5 md:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
-        
-        <a href="#suite" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-colors mb-8 backdrop-blur-sm">
-            <span class="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
-            Pixel Array Event Software Suite
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X68VEX2VRE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-X68VEX2VRE');
+    </script>
+</head>
+<body class="antialiased overflow-x-hidden bg-slate-950">
 
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 max-w-4xl">
-            Stop managing 500-pax corporate galas on a <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">broken spreadsheet.</span>
-        </h1>
-        
-        <p class="text-lg md:text-xl text-slate-400 max-w-2xl mb-10 leading-relaxed font-light">
-            A cloud-based seating chart and real-time venue kiosk provisioner built specifically for live event professionals. Drag, drop, and deploy instantly.
-        </p>
+    <a href="#main" class="sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-md">Skip to content</a>
 
-        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a href="https://buy.stripe.com/YOUR_LIVE_LINK" class="px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] text-center">
-                Activate Event Key — $X
-            </a>
-            <a href="#demo" class="px-8 py-4 bg-slate-900 border border-slate-700 text-white font-semibold rounded-lg hover:bg-slate-800 transition text-center flex items-center justify-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                View Live Demo
-            </a>
-        </div>
+    <div class="fixed top-0 left-0 right-0 z-[60]" data-site-header>
+        <div class="bg-slate-950/80 backdrop-blur-md border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-5 md:px-8 h-[3.75rem] md:h-[var(--nav-h)] flex items-center justify-between gap-3">
+                <a href="index.html" class="font-display text-lg font-bold tracking-tight text-white shrink-0 leading-tight">
+                    Pixel<span class="text-blue-500"> Array</span>
+                </a>
 
-        <div class="mt-16 w-full max-w-5xl rounded-xl border border-slate-800 bg-slate-900/50 p-2 shadow-2xl backdrop-blur-xl">
-            <div class="rounded-lg border border-slate-800 bg-slate-950 overflow-hidden aspect-video relative flex items-center justify-center">
-                
-                <div class="absolute inset-0 flex flex-col">
-                    <div class="h-10 border-b border-slate-800 bg-slate-900 flex items-center px-4 gap-2">
-                        <div class="w-3 h-3 rounded-full bg-slate-700"></div>
-                        <div class="w-3 h-3 rounded-full bg-slate-700"></div>
-                        <div class="w-3 h-3 rounded-full bg-slate-700"></div>
-                    </div>
-                    <div class="flex-1 p-8 text-slate-500 flex flex-col items-center justify-center border-dashed border-2 border-slate-800 m-8 rounded-xl bg-slate-900/30">
-                        <svg class="w-12 h-12 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                        <p>Embed your GitHub Pages display link or a high-res looping GIF here</p>
-                    </div>
+                <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-400" aria-label="Primary">
+                    <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                    <a href="#demo" class="hover:text-white transition-colors">How it works</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                </nav>
+
+                <div class="flex items-center gap-2 md:gap-4">
+                    <a href="https://buy.stripe.com/YOUR_LIVE_LINK" class="hidden md:inline-flex px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-500 transition whitespace-nowrap">
+                        Activate Event
+                    </a>
                 </div>
-
             </div>
         </div>
-    </section>
-</main>
+    </div>
+
+    <main id="main" class="bg-slate-950 relative overflow-hidden min-h-screen">
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+
+        <section class="relative pt-32 pb-20 sm:pt-40 sm:pb-24 px-5 md:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
+            
+            <a href="#suite" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-colors mb-8 backdrop-blur-sm">
+                <span class="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
+                Pixel Array Event Software Suite
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 max-w-4xl">
+                Stop managing 500-pax corporate galas on a <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">broken spreadsheet.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mb-10 leading-relaxed font-light">
+                A cloud-based seating chart and real-time venue kiosk provisioner built specifically for live event professionals. Drag, drop, and deploy instantly.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="https://buy.stripe.com/YOUR_LIVE_LINK" class="px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] text-center">
+                    Activate Event Key — $X
+                </a>
+                <a href="#demo" class="px-8 py-4 bg-slate-900 border border-slate-700 text-white font-semibold rounded-lg hover:bg-slate-800 transition text-center flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    View Live Demo
+                </a>
+            </div>
+
+            <div id="demo" class="mt-16 w-full max-w-5xl rounded-xl border border-slate-800 bg-slate-900/50 p-2 shadow-2xl backdrop-blur-xl">
+                <div class="rounded-lg border border-slate-800 bg-slate-950 overflow-hidden aspect-video relative flex flex-col">
+                    
+                    <div class="h-10 border-b border-slate-800 bg-slate-900 flex items-center px-4 gap-3 shrink-0">
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-slate-700"></div>
+                            <div class="w-3 h-3 rounded-full bg-slate-700"></div>
+                            <div class="w-3 h-3 rounded-full bg-slate-700"></div>
+                        </div>
+                        <div class="px-3 py-1 bg-slate-950 border border-slate-800 rounded text-xs text-slate-500 font-mono w-64 flex items-center gap-2 truncate opacity-70">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v1.85c2.95 1.3 5.25 4.15 5.9 7.54z"/></svg>
+                            app.pixelarray.com.au/admin
+                        </div>
+                    </div>
+                    
+                    <iframe 
+                        src="https://daveco77.github.io/SeatingPlan-RemotelyOperated/control-panel.html" 
+                        class="w-full h-full border-0 flex-1 bg-slate-950" 
+                        title="Pixel Array Control Panel Demo"
+                        loading="lazy">
+                    </iframe>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="border-t border-white/5 bg-slate-950 pt-16 md:pt-20 pb-10 px-5 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="border-t border-white/5 pt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <a href="mailto:david.watton@pixelarray.com.au" class="inline-flex justify-center sm:justify-start px-6 py-3 border border-white/15 text-white font-semibold rounded-md hover:bg-white/5 transition text-sm">
+                    Email Pixel Array Support
+                </a>
+                <p class="text-center sm:text-right text-xs text-slate-500">© 2026 Pixel Array Software Suite.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
