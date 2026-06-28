@@ -1,159 +1,69 @@
-/**
- * Pixel Array site — Lenis smooth scroll, nav, optional before/after slider, scroll reveals. (DaveCo: programming offshoot.)
- * Configure Stripe Payment Link in pay.html (STRIPE_PAYMENT_LINK).
- */
-(function () {
-    'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Mobile Navigation
+  const openBtn = document.querySelector('[data-nav-open]');
+  const closeBtn = document.querySelector('[data-nav-close]');
+  const panel = document.querySelector('[data-nav-panel]');
+  const scrim = document.querySelector('[data-scrim]');
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (openBtn && closeBtn && panel && scrim) {
+    function openNav(){
+      panel.classList.add('open');
+      scrim.classList.add('open');
+      openBtn.setAttribute('aria-expanded','true');
+    }
+    function closeNav(){
+      panel.classList.remove('open');
+      scrim.classList.remove('open');
+      openBtn.setAttribute('aria-expanded','false');
+    }
+    openBtn.addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    scrim.addEventListener('click', closeNav);
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  }
 
-    let lenis = null;
-
-    if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
-        lenis = new Lenis({
-            duration: 1.35,
-            easing: function (t) {
-                return Math.min(1, 1.001 - Math.pow(2, -10 * t));
-            },
-            smoothWheel: true,
-            wheelMultiplier: 0.85,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
+  // 2. Scroll Reveal (This is the trigger that fixes the blank screen!)
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length > 0) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
         }
-        requestAnimationFrame(raf);
-    }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  }
 
-    function scrollToTarget(hash) {
-        if (!hash || hash === '#') return;
-        const el = document.querySelector(hash);
-        if (!el) return;
-        const header = document.querySelector('[data-site-header]');
-        const offset = header ? header.offsetHeight + 8 : 80;
-        const top = el.getBoundingClientRect().top + window.scrollY - offset;
-        if (lenis) {
-            lenis.scrollTo(top, { immediate: false });
-        } else {
-            window.scrollTo({ top, behavior: 'smooth' });
-        }
-    }
+  // 3. CAD-Style Crosshair / Coordinate HUD
+  const hero = document.querySelector('.hero');
+  const crosshair = document.querySelector('.crosshair');
+  const hud = document.querySelector('.hud');
+  const hudX = document.querySelector('[data-hud-x]');
+  const hudY = document.querySelector('[data-hud-y]');
 
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-        anchor.addEventListener('click', function (e) {
-            const href = anchor.getAttribute('href');
-            if (!href || href === '#') return;
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                scrollToTarget(href);
-                closeMobileNav();
-            }
-        });
+  if (hero && crosshair && hud && window.matchMedia('(pointer: fine)').matches){
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      crosshair.style.left = (x - 9) + 'px';
+      crosshair.style.top = (y - 9) + 'px';
+      hud.style.left = (x + 18) + 'px';
+      hud.style.top = (y - 22) + 'px';
+      
+      hudX.textContent = String(Math.round(x)).padStart(4,'0');
+      hudY.textContent = String(Math.round(y)).padStart(4,'0');
+      
+      crosshair.classList.add('show');
+      hud.classList.add('show');
     });
-
-    const yearEl = document.getElementById('y');
-    if (yearEl) {
-        yearEl.textContent = String(new Date().getFullYear());
-    }
-
-    const openBtn = document.querySelector('[data-nav-open]');
-    const closeBtn = document.querySelector('[data-nav-close]');
-    const panel = document.querySelector('[data-nav-panel]');
-
-    function closeMobileNav() {
-        document.body.classList.remove('nav-open');
-        panel?.classList.remove('is-open');
-        panel?.setAttribute('aria-hidden', 'true');
-        openBtn?.setAttribute('aria-expanded', 'false');
-    }
-
-    function openMobileNav() {
-        document.body.classList.add('nav-open');
-        panel?.classList.add('is-open');
-        panel?.setAttribute('aria-hidden', 'false');
-        openBtn?.setAttribute('aria-expanded', 'true');
-    }
-
-    openBtn?.addEventListener('click', function () {
-        if (panel?.classList.contains('is-open')) closeMobileNav();
-        else openMobileNav();
+    
+    hero.addEventListener('mouseleave', () => {
+      crosshair.classList.remove('show');
+      hud.classList.remove('show');
     });
-    closeBtn?.addEventListener('click', closeMobileNav);
-    panel?.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', closeMobileNav);
-    });
-
-    document.querySelectorAll('[data-dropdown]').forEach(function (wrap) {
-        var btn = wrap.querySelector('[data-dropdown-btn]');
-        var panel = wrap.querySelector('[data-dropdown-panel]');
-        if (!btn || !panel) return;
-
-        btn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            var open = wrap.classList.toggle('is-open');
-            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-
-        panel.querySelectorAll('a').forEach(function (a) {
-            a.addEventListener('click', function () {
-                wrap.classList.remove('is-open');
-                btn.setAttribute('aria-expanded', 'false');
-            });
-        });
-    });
-
-    document.addEventListener('click', function () {
-        document.querySelectorAll('[data-dropdown].is-open').forEach(function (wrap) {
-            wrap.classList.remove('is-open');
-            var b = wrap.querySelector('[data-dropdown-btn]');
-            if (b) b.setAttribute('aria-expanded', 'false');
-        });
-    });
-
-    document.querySelectorAll('[data-dropdown]').forEach(function (wrap) {
-        wrap.addEventListener('click', function (e) {
-            e.stopPropagation();
-        });
-    });
-
-    const slider = document.getElementById('comparison-slider');
-    const renderLayer = document.getElementById('render-layer');
-    const divider = document.getElementById('slider-divider');
-    if (slider && renderLayer && divider) {
-        slider.addEventListener('input', function (e) {
-            const value = e.target.value;
-            renderLayer.style.clipPath = 'polygon(0 0, ' + value + '% 0, ' + value + '% 100%, 0 100%)';
-            divider.style.left = value + '%';
-        });
-    }
-
-    if (!prefersReducedMotion) {
-        const reveals = document.querySelectorAll('.reveal');
-        if (reveals.length && 'IntersectionObserver' in window) {
-            const io = new IntersectionObserver(
-                function (entries) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('is-visible');
-                            io.unobserve(entry.target);
-                        }
-                    });
-                },
-                { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
-            );
-            reveals.forEach(function (el) {
-                io.observe(el);
-            });
-        } else {
-            reveals.forEach(function (el) {
-                el.classList.add('is-visible');
-            });
-        }
-    } else {
-        document.querySelectorAll('.reveal').forEach(function (el) {
-            el.classList.add('is-visible');
-        });
-    }
-})();
+  }
+});
