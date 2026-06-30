@@ -33,7 +33,7 @@
     </nav>
 
     <div class="head-actions">
-      <a href="https://buy.stripe.com/8x27sFb93eRVaIHcWFbwk02" class="btn btn-marker">Activate Event — $4.99</a>
+      <a href="https://buy.stripe.com/8x27sFb93eRVaIHcWFbwk02" class="btn btn-marker">Activate Event — $14.99</a>
       <button type="button" class="nav-toggle" data-nav-open aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
@@ -51,7 +51,7 @@
   <a href="seating-chart.html">Seating chart</a>
   <a href="pay.html">Pay invoice</a>
   <a href="index.html#contact">Contact</a>
-  <a href="https://buy.stripe.com/8x27sFb93eRVaIHcWFbwk02" style="color: var(--marker);">Activate Event — $4.99</a>
+  <a href="https://buy.stripe.com/8x27sFb93eRVaIHcWFbwk02" style="color: var(--marker);">Activate Event — $14.99</a>
 </nav>
 
 <main id="main">
@@ -67,7 +67,7 @@
         <h1 class="hero-title">TableCo.<br><em>Seating charts.</em></h1>
         <p class="hero-sub" style="margin-left: auto; margin-right: auto;">A cloud-based seating chart and real-time venue kiosk provisioner built specifically for live event professionals. Drag, drop, and deploy instantly.</p>
         <div class="hero-ctas" style="justify-content: center;">
-          <a href="https://buy.stripe.com/8x27sFb93eRVaIHcWFbwk02" class="btn btn-marker">Buy Full Version — $4.99</a>
+          <a href="https://buy.stripe.com/8x27sFb93eRVaIHcWFbwk02" class="btn btn-marker">Buy Full Version — $14.99</a>
           <a href="#demo" class="btn btn-ghost">Test the Sandbox ↓</a>
         </div>
       </div>
@@ -95,21 +95,56 @@
            <iframe src="https://daveco77.github.io/SeatingPlan-RemotelyOperated/control-panel.html?event=cs_live_a1pKs2DH8JcUBbWKIyVg7SvdYAO6MULxUHlKiHxOVK4LCyZluZsiUBIgQb" style="width: 100%; height: 600px; border: 0; background: var(--ink);" title="Control Panel" loading="lazy"></iframe>
         </div>
 
+        <!-- UPDATED ATTENDEE DISPLAY (PORTRAIT) -->
         <div style="display: flex; flex-direction: column;">
            <div style="background: var(--ink); padding: 0.5rem 1.5rem; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.75rem; color: var(--marker);">[LIVE ATTENDEE DISPLAY] — Watch it update</div>
-           <iframe src="https://daveco77.github.io/SeatingPlan-RemotelyOperated/?event=cs_live_a1pKs2DH8JcUBbWKIyVg7SvdYAO6MULxUHlKiHxOVK4LCyZluZsiUBIgQb" style="width: 100%; height: 500px; border: 0; background: var(--ink); pointer-events: none;" title="Live Kiosk" loading="lazy"></iframe>
+           <div style="padding: 3rem 1rem; background: #0b0b0b; display: flex; justify-content: center; align-items: center;">
+               <div style="width: 100%; max-width: 340px; height: 680px; border: 12px solid #222; border-radius: 36px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative;">
+                   <iframe src="https://daveco77.github.io/SeatingPlan-RemotelyOperated/?event=cs_live_a1pKs2DH8JcUBbWKIyVg7SvdYAO6MULxUHlKiHxOVK4LCyZluZsiUBIgQb" style="width: 100%; height: 100%; border: 0; background: var(--ink); pointer-events: none;" title="Live Kiosk" loading="lazy"></iframe>
+               </div>
+           </div>
         </div>
 
       </div>
 
-              <div>
-        <p class="eyebrow">Contact</p>
-        <h2>Get TableCo Lite - Sent right to your inbox</h2>
-        <p>Get a working copy of TableCo Lite sent through to your inbox right now.</p>
-        <div class="w-full">
-          <script type="text/javascript" src="https://form.jotform.com/jsform/261792864694879"></script>
-        </div>
-                  
+      <!-- NEW LITE VS PRO SECTION -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 5rem; text-align: left; max-width: 1000px; margin-left: auto; margin-right: auto;" class="reveal">
+          
+          <!-- LITE TIER (JOTFORM) -->
+          <div style="background: var(--ink-raised); padding: 2rem; border: 1px solid var(--line-strong); border-radius: 8px;">
+              <p class="eyebrow">Free Tier</p>
+              <h3 style="margin-top: 0; font-size: 1.5rem;">TableCo Lite</h3>
+              <p style="color: var(--paper-dim); margin-bottom: 1.5rem;">Get a working, watermarked copy of TableCo Lite sent through to your inbox right now. Perfect for testing the workflow before your show.</p>
+              <div class="w-full">
+                  <script type="text/javascript" src="https://form.jotform.com/jsform/261792864694879"></script>
+              </div>
+          </div>
+
+          <!-- PREMIUM TIER (STRIPE) -->
+          <div style="background: var(--ink-raised); padding: 2rem; border: 1px solid var(--marker); border-radius: 8px; position: relative; display: flex; flex-direction: column;">
+              <div style="position: absolute; top: -12px; right: 24px; background: var(--marker); color: #000; font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;">Premium</div>
+              <p class="eyebrow" style="color: var(--marker);">Professional Use</p>
+              <h3 style="margin-top: 0; font-size: 1.5rem;">TableCo Pro — $14.99</h3>
+              <p style="color: var(--paper-dim);">Deploy your seating chart to the main stage. Removing the watermark gives your production a clean, white-labeled finish. Your database node is provisioned instantly upon payment.</p>
+              <ul style="list-style-type: disc; padding-left: 1.25rem; margin-top: 1.5rem; margin-bottom: 2.5rem; color: var(--paper-dim); line-height: 1.8;">
+                  <li>Zero Pixel Array watermarks</li>
+                  <li>Full brand color customization</li>
+                  <li>Unlimited live attendees</li>
+                  <li>Priority cloud infrastructure</li>
+              </ul>
+              
+              <div style="margin-top: auto;">
+                  <a href="https://buy.stripe.com/8x27sFb93eRVaIHcWFbwk02" class="btn btn-marker" style="width: 100%; text-align: center; justify-content: center;">Deploy Pro Event — $14.99</a>
+                  <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--paper-dim); display: flex; align-items: center; justify-content: center; gap: 6px;">
+                      <svg width="24" height="24" viewBox="0 0 40 40" fill="currentColor">
+                          <path d="M19.74,13.62c-2.31,0-4.04,1.06-4.04,2.79c0,1.54,1.44,2.4,3.75,2.98l2.12,.58c2.98,.77,4.81,2.02,4.81,4.52,0,3.37-3.17,5.58-7.79,5.58-3.08,0-6.15-1.15-8.46-2.69l1.44-4.13c2.4,1.35,5.19,2.4,7.4,2.4,2.6,0,4.23-1.06,4.23-2.88,0-1.63-1.35-2.5-3.85-3.08l-1.92-.48c-3.17-.87-4.81-2.21-4.81-4.52,0-3.37,3.08-5.38,7.31-5.38,2.79,0,5.29,.87,7.4,2.12l-1.44,4.04c-1.92-1.06-4.23-1.83-6.15-1.83Z"/>
+                      </svg>
+                      Secure payment powered by Stripe
+                  </p>
+              </div>
+          </div>
+      </div>
+      
     </div>
   </section>
 
@@ -152,7 +187,7 @@
   <section class="cta-band">
     <div class="wrap reveal">
       <h3>Ditch the spreadsheets. Deploy a professional seating chart in 60 seconds.</h3>
-      <a href="https://buy.stripe.com/8x27sFb93eRVaIHcWFbwk02" class="btn btn-marker">Activate Event — $4.99</a>
+      <a href="https://buy.stripe.com/8x27sFb93eRVaIHcWFbwk02" class="btn btn-marker">Activate Event — $14.99</a>
     </div>
   </section>
 
