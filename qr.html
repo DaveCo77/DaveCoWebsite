@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free QR Code Generator | Pixel Array</title>
+    <meta name="description" content="Generate high-res, non-expiring QR codes for your live events instantly. No sign-up required.">
+    
+    <!-- Lightweight QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        :root {
+            --brand-primary: #8b55d6;
+            --brand-secondary: #5e309c;
+            --bg-color: #0b0b0b;
+            --ink-raised: #1a1a1a;
+            --text-main: #ffffff;
+            --paper-dim: #aaaaaa;
+            --line-strong: rgba(255, 255, 255, 0.1);
+        }
+
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background: var(--bg-color); 
+            color: var(--text-main); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px; 
+        }
+
+        .container { 
+            background: var(--ink-raised); 
+            padding: 40px; 
+            border-radius: 12px; 
+            max-width: 500px; 
+            width: 100%; 
+            text-align: center; 
+            border: 1px solid var(--line-strong); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 { margin: 0 0 10px 0; font-size: 28px; text-transform: uppercase; letter-spacing: 1px;}
+        p.subtitle { color: var(--paper-dim); margin: 0 0 30px 0; font-size: 14px; }
+
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            background: rgba(0,0,0,0.5); 
+            border: 1px solid var(--line-strong); 
+            color: white; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            box-sizing: border-box; 
+            transition: all 0.3s;
+        }
+        input:focus { outline: none; border-color: var(--brand-primary); box-shadow: 0 0 15px rgba(139, 85, 214, 0.2); }
+
+        #qrcode { 
+            margin: 30px auto; 
+            padding: 20px; 
+            background: white; 
+            display: inline-block; 
+            border-radius: 8px; 
+            min-height: 200px;
+            min-width: 200px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            background: #222;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            border: 1px solid var(--line-strong);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+        .download-btn:hover { background: #333; }
+
+        /* --- THE UPSELL BANNER --- */
+        .upsell { 
+            margin-top: 20px; 
+            padding: 25px; 
+            background: linear-gradient(135deg, rgba(139, 85, 214, 0.1) 0%, rgba(0,0,0,0) 100%); 
+            border: 1px solid var(--brand-primary); 
+            border-radius: 8px; 
+            text-align: left;
+        }
+        
+        .upsell h3 { margin: 0 0 10px 0; font-size: 18px; color: var(--brand-primary); }
+        .upsell p { color: var(--paper-dim); font-size: 14px; margin: 0 0 20px 0; line-height: 1.5;}
+        
+        .upsell-btn { 
+            display: block; 
+            text-align: center;
+            padding: 12px; 
+            background: var(--brand-primary); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.2s;
+        }
+        .upsell-btn:hover { background: var(--brand-secondary); }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>QR Code Generator</h1>
+    <p class="subtitle">Enter your URL below. No sign-up, no expiration.</p>
+
+    <input type="text" id="urlInput" placeholder="https://your-event-link.com" autocomplete="off">
+
+    <div id="qrcode"></div>
+    
+    <button class="download-btn" id="downloadBtn" style="display: none;">Download QR Code</button>
+
+    <!-- THE CAPTURECO UPSELL -->
+    <div class="upsell">
+        <h3>Scanning this to a Google Form?</h3>
+        <p>Upgrade your check-in experience. Deploy a custom, branded iPad kiosk with zero-latency cloud syncing and instant Excel exports for just <strong>$9.99</strong> per event.</p>
+        <a href="https://pixelarray.com.au/expo.html" class="upsell-btn" target="_blank">Explore CaptureCo</a>
+    </div>
+</div>
+
+<script>
+    const urlInput = document.getElementById('urlInput');
+    const qrcodeContainer = document.getElementById('qrcode');
+    const downloadBtn = document.getElementById('downloadBtn');
+    
+    let qr = null;
+
+    // Generate QR in real-time as they type
+    urlInput.addEventListener('input', function() {
+        const text = urlInput.value.trim();
+        
+        // Clear previous QR
+        qrcodeContainer.innerHTML = '';
+        
+        if (text) {
+            qr = new QRCode(qrcodeContainer, {
+                text: text,
+                width: 200,
+                height: 200,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            downloadBtn.style.display = 'block';
+        } else {
+            downloadBtn.style.display = 'none';
+        }
+    });
+
+    // Handle downloading the image
+    downloadBtn.addEventListener('click', function() {
+        const img = qrcodeContainer.querySelector('img');
+        if (img) {
+            const link = document.createElement('a');
+            link.href = img.src;
+            link.download = 'Event-QR-Code.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    });
+</script>
+
+</body>
+</html>
