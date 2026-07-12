@@ -140,14 +140,14 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 5rem; text-align: left; max-width: 1000px; margin-left: auto; margin-right: auto;" class="reveal">
           
           <!-- LITE TIER (JOTFORM) -->
-          <div style="background: var(--ink-raised); padding: 2rem; border: 1px solid var(--line-strong); border-radius: 8px;">
-              <p class="eyebrow">Free Tier</p>
-              <h3 style="margin-top: 0; font-size: 1.5rem;">TableCo Lite</h3>
-              <p style="color: var(--paper-dim); margin-bottom: 1.5rem;">Get a working, watermarked copy of TableCo Lite sent through to your inbox right now. Perfect for testing the workflow before your show.</p>
-              <div class="w-full">
-                <script type="text/javascript" src="https://form.jotform.com/jsform/261802001715040"></script>
-              </div>
-          </div>
+<div id="lite-form-wrapper" style="margin-top: 1rem;">
+    <div style="display: flex; gap: 0.5rem;">
+        <input type="email" id="lite-email" placeholder="Enter your email" required
+               style="flex: 1; padding: 0.75rem 1rem; border-radius: 4px; border: 1px solid var(--line-strong); background: var(--ink); color: var(--paper); font-family: inherit;">
+        <button id="lite-submit" class="btn btn-marker" style="padding: 0.75rem 1.5rem; border: none; cursor: pointer;">Send Link</button>
+    </div>
+    <p id="lite-status" style="margin-top: 0.75rem; font-size: 0.85rem; color: #4ade80; display: none;"></p>
+</div>
 
           <!-- PREMIUM TIER (STRIPE) -->
           <div style="background: var(--ink-raised); padding: 2rem; border: 1px solid var(--marker); border-radius: 8px; position: relative; display: flex; flex-direction: column;">
