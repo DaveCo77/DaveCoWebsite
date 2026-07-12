@@ -26,10 +26,6 @@
       margin: 0 auto;
       max-width: 90%;
     }
-    /* Stack the new email form vertically on small screens */
-    #lite-form-wrapper > div { 
-      flex-direction: column; 
-    }
   }
   
   @media (min-width: 769px) {
@@ -113,14 +109,34 @@
     <div class="crosshair" aria-hidden="true"></div>
     <div class="hud" aria-hidden="true">X <span data-hud-x>0000</span> &nbsp; Y <span data-hud-y>0000</span></div>
 
-    <div class="wrap hero-inner" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; text-align: center;">
+    <div class="wrap hero-inner" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto; text-align: center;">
       <div class="reveal">
         <p class="eyebrow">Event Software Suite</p>
         <h1 class="hero-title">TableCo.<br><em>Seating charts.</em></h1>
-        <p class="hero-sub" style="margin-left: auto; margin-right: auto;">A cloud-based seating chart and real-time venue kiosk provisioner built specifically for live event professionals. Drag, drop, and deploy instantly.</p>
-        <div class="hero-ctas" style="justify-content: center;">
-          <a href="https://buy.stripe.com/4gM6oBdhbdNR5onaOxbwk04" class="btn btn-marker">Buy Full Version — $14.99</a>
-          <a href="#demo" class="btn btn-ghost">Test the Sandbox ↓</a>
+        <p class="hero-sub" style="margin-left: auto; margin-right: auto; max-width: 700px;">A cloud-based seating chart and real-time venue kiosk provisioner built specifically for live event professionals. Drag, drop, and deploy instantly.</p>
+        
+        <!-- NEW HERO CTA SECTION -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-top: 2.5rem;">
+            
+            <!-- Email Capture Box -->
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid var(--line-strong); padding: 1.25rem; border-radius: 8px; display: flex; flex-direction: column; gap: 0.75rem; align-items: center; justify-content: center; max-width: 500px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                <span style="color: var(--paper); font-weight: 600; font-size: 0.95rem;">Try now for free. Get an instant test link:</span>
+                <div style="display: flex; gap: 0.5rem; width: 100%; flex-wrap: wrap;">
+                    <input type="email" id="lite-email-hero" placeholder="Enter your email" required
+                           style="flex: 1; min-width: 200px; padding: 0.75rem 1rem; border-radius: 4px; border: 1px solid var(--line-strong); background: var(--ink); color: var(--paper); font-family: inherit;">
+                    <button id="lite-submit-hero" class="btn btn-ghost" style="padding: 0.75rem 1.5rem; cursor: pointer; white-space: nowrap; flex-grow: 1;">Send Free Link</button>
+                </div>
+                <p id="lite-status-hero" style="width: 100%; margin: 0; font-size: 0.85rem; color: #4ade80; display: none; text-align: center;"></p>
+            </div>
+
+            <p style="color: var(--paper-dim); font-size: 0.9rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;">— or —</p>
+
+            <!-- Purchase & Sandbox Links -->
+            <div class="hero-ctas" style="justify-content: center; margin-top: 0;">
+                <a href="https://buy.stripe.com/4gM6oBdhbdNR5onaOxbwk04" class="btn btn-marker">Deploy Pro Event — $14.99</a>
+                <a href="#demo" class="btn btn-ghost" style="border: none; text-decoration: underline;">Test the Sandbox ↓</a>
+            </div>
+            
         </div>
       </div>
     </div>
@@ -133,13 +149,12 @@
             <p>Experience the zero-latency sync. Drag a table in the admin panel and watch it move instantly on the attendee display.</p>
         </div>
 
-        <!-- NEW: Mobile Fallback Message -->
+        <!-- Mobile Fallback Message -->
         <div class="sandbox-mobile reveal">
             <h3 style="margin-top:0; font-size: 1.25rem;">Live Demo is Desktop Only</h3>
             <p style="color: var(--paper-dim); font-size: 0.9rem; margin-bottom: 0;">To keep your browsing experience lightning fast, the dual-screen live sync demo is disabled on mobile devices. Request your free Lite link below to test the kiosk directly on this phone!</p>
         </div>
 
-        <!-- UPDATED: Added 'sandbox-desktop' class to the existing panel -->
       <div class="draft-panel reveal sandbox-desktop" style="padding: 0; overflow: hidden; max-width: 1000px; margin: 0 auto;">
         
         <div style="background: var(--ink-raised); border-bottom: 1px solid var(--line-strong); padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center;">
@@ -178,18 +193,31 @@
       <!-- NEW LITE VS PRO SECTION -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 5rem; text-align: left; max-width: 1000px; margin-left: auto; margin-right: auto;" class="reveal">
           
-          <!-- LITE TIER (JOTFORM) -->
-<div id="lite-form-wrapper" style="margin-top: 1rem;">
-    <div style="display: flex; gap: 0.5rem;">
-        <input type="email" id="lite-email" placeholder="Enter your email" required
-               style="flex: 1; padding: 0.75rem 1rem; border-radius: 4px; border: 1px solid var(--line-strong); background: var(--ink); color: var(--paper); font-family: inherit;">
-        <button id="lite-submit" class="btn btn-marker" style="padding: 0.75rem 1.5rem; border: none; cursor: pointer;">Send Link</button>
-    </div>
-    <p id="lite-status" style="margin-top: 0.75rem; font-size: 0.85rem; color: #4ade80; display: none;"></p>
-</div>
+          <!-- LITE TIER (CARD) -->
+          <div style="background: var(--ink); padding: 2rem; border: 1px solid var(--line-strong); border-radius: 8px; position: relative; display: flex; flex-direction: column;">
+              <div style="position: absolute; top: -12px; right: 24px; background: var(--line-strong); color: var(--paper); font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;">Free</div>
+              <p class="eyebrow" style="color: var(--paper-dim);">Test Environment</p>
+              <h3 style="margin-top: 0; font-size: 1.5rem;">TableCo Lite</h3>
+              <p style="color: var(--paper-dim);">Try now for free. Get an instant, private sandbox sent straight to your inbox to test the zero-latency sync with a watermark.</p>
+              <ul style="list-style-type: disc; padding-left: 1.25rem; margin-top: 1.5rem; margin-bottom: 2.5rem; color: var(--paper-dim); line-height: 1.8;">
+                  <li>Live zero-latency sync</li>
+                  <li>Admin & Attendee views</li>
+                  <li>Pixel Array watermark</li>
+                  <li>Temporary test database</li>
+              </ul>
+              
+              <div id="lite-form-wrapper" style="margin-top: auto;">
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                      <input type="email" id="lite-email-card" placeholder="Enter your email" required
+                             style="width: 100%; padding: 0.75rem 1rem; border-radius: 4px; border: 1px solid var(--line-strong); background: var(--ink-raised); color: var(--paper); font-family: inherit; box-sizing: border-box;">
+                      <button id="lite-submit-card" class="btn btn-ghost" style="width: 100%; text-align: center; justify-content: center; padding: 0.75rem 1.5rem; border: 1px solid var(--line-strong); cursor: pointer; background: transparent; color: var(--paper);">Send Free Link</button>
+                  </div>
+                  <p id="lite-status-card" style="margin-top: 0.75rem; font-size: 0.85rem; color: #4ade80; display: none; text-align: center;"></p>
+              </div>
+          </div>
 
           <!-- PREMIUM TIER (STRIPE) -->
-          <div style="background: var(--ink-raised); padding: 2rem; border: 1px solid var(--marker); border-radius: 8px; position: relative; display: flex; flex-direction: column;">
+          <div style="background: var(--ink-raised); padding: 2rem; border: 1px solid var(--marker); border-radius: 8px; position: relative; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
               <div style="position: absolute; top: -12px; right: 24px; background: var(--marker); color: #000; font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;">Premium</div>
               <p class="eyebrow" style="color: var(--marker);">Professional Use</p>
               <h3 style="margin-top: 0; font-size: 1.5rem;">TableCo Pro — $14.99</h3>
@@ -202,7 +230,7 @@
               </ul>
               
               <div style="margin-top: auto;">
-                  <a href="https://buy.stripe.com/4gM6oBdhbdNR5onaOxbwk04" class="btn btn-marker" style="width: 100%; text-align: center; justify-content: center;">Deploy Pro Event — $14.99</a>
+                  <a href="https://buy.stripe.com/4gM6oBdhbdNR5onaOxbwk04" class="btn btn-marker" style="width: 100%; text-align: center; justify-content: center; box-sizing: border-box;">Deploy Pro Event — $14.99</a>
                   <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--paper-dim); display: flex; align-items: center; justify-content: center; gap: 6px;">
                       <svg width="24" height="24" viewBox="0 0 40 40" fill="currentColor">
                           <path d="M19.74,13.62c-2.31,0-4.04,1.06-4.04,2.79c0,1.54,1.44,2.4,3.75,2.98l2.12,.58c2.98,.77,4.81,2.02,4.81,4.52,0,3.37-3.17,5.58-7.79,5.58-3.08,0-6.15-1.15-8.46-2.69l1.44-4.13c2.4,1.35,5.19,2.4,7.4,2.4,2.6,0,4.23-1.06,4.23-2.88,0-1.63-1.35-2.5-3.85-3.08l-1.92-.48c-3.17-.87-4.81-2.21-4.81-4.52,0-3.37,3.08-5.38,7.31-5.38,2.79,0,5.29,.87,7.4,2.12l-1.44,4.04c-1.92-1.06-4.23-1.83-6.15-1.83Z"/>
@@ -255,7 +283,10 @@
   <section class="cta-band">
     <div class="wrap reveal">
       <h3>Ditch the spreadsheets. Deploy a professional seating chart in 60 seconds.</h3>
-      <a href="https://buy.stripe.com/4gM6oBdhbdNR5onaOxbwk04" class="btn btn-marker">Activate Event — $14.99</a>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="https://buy.stripe.com/4gM6oBdhbdNR5onaOxbwk04" class="btn btn-marker">Deploy Pro Event — $14.99</a>
+          <a href="#main" class="btn btn-ghost">Try now for free</a>
+      </div>
     </div>
   </section>
 
@@ -312,16 +343,18 @@
   };
 
   const app = initializeApp(firebaseConfig);
- const db = getFirestore(app, "mondrianfirestoreid");
+  const db = getFirestore(app, "mondrianfirestoreid");
 
-  const submitBtn = document.getElementById('lite-submit');
-  const emailInput = document.getElementById('lite-email');
-  const statusText = document.getElementById('lite-status');
+  // Reusable function to handle both form inputs (hero and card)
+  async function submitLiteRequest(emailInputId, submitBtnId, statusTextId) {
+    const emailInput = document.getElementById(emailInputId);
+    const submitBtn = document.getElementById(submitBtnId);
+    const statusText = document.getElementById(statusTextId);
 
-  submitBtn.addEventListener('click', async () => {
     const email = emailInput.value.trim();
     if (!email) return;
 
+    const originalBtnText = submitBtn.textContent;
     submitBtn.textContent = "Sending...";
     submitBtn.disabled = true;
 
@@ -342,10 +375,21 @@
       statusText.textContent = "Error sending request. Please try again.";
       statusText.style.color = "#ef4444";
       statusText.style.display = "block";
-      submitBtn.textContent = "Send Link";
+      submitBtn.textContent = originalBtnText;
       submitBtn.disabled = false;
     }
-  });
+  }
+
+  // Attach event listeners to both forms
+  const heroSubmit = document.getElementById('lite-submit-hero');
+  if (heroSubmit) {
+      heroSubmit.addEventListener('click', () => submitLiteRequest('lite-email-hero', 'lite-submit-hero', 'lite-status-hero'));
+  }
+
+  const cardSubmit = document.getElementById('lite-submit-card');
+  if (cardSubmit) {
+      cardSubmit.addEventListener('click', () => submitLiteRequest('lite-email-card', 'lite-submit-card', 'lite-status-card'));
+  }
 </script>
     
 </body>
