@@ -8,6 +8,38 @@
     
     <link rel="stylesheet" href="css/main.css">
 
+    <style>
+  /* Mobile Optimizations for Reddit Traffic */
+  @media (max-width: 768px) {
+    /* Hide the heavy double-iframe sandbox on phones */
+    .sandbox-desktop { 
+      display: none !important; 
+    }
+    /* Show a lightweight fallback message */
+    .sandbox-mobile { 
+      display: block !important; 
+      background: var(--ink-raised); 
+      padding: 2rem; 
+      border-radius: 8px; 
+      text-align: center; 
+      border: 1px solid var(--line-strong); 
+      margin: 0 auto;
+      max-width: 90%;
+    }
+    /* Stack the new email form vertically on small screens */
+    #lite-form-wrapper > div { 
+      flex-direction: column; 
+    }
+  }
+  
+  @media (min-width: 769px) {
+    /* Hide the mobile fallback on desktop */
+    .sandbox-mobile { 
+      display: none !important; 
+    }
+  }
+</style>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X68VEX2VRE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -101,7 +133,14 @@
             <p>Experience the zero-latency sync. Drag a table in the admin panel and watch it move instantly on the attendee display.</p>
         </div>
 
-      <div class="draft-panel reveal" style="padding: 0; overflow: hidden; max-width: 1000px; margin: 0 auto;">
+        <!-- NEW: Mobile Fallback Message -->
+        <div class="sandbox-mobile reveal">
+            <h3 style="margin-top:0; font-size: 1.25rem;">Live Demo is Desktop Only</h3>
+            <p style="color: var(--paper-dim); font-size: 0.9rem; margin-bottom: 0;">To keep your browsing experience lightning fast, the dual-screen live sync demo is disabled on mobile devices. Request your free Lite link below to test the kiosk directly on this phone!</p>
+        </div>
+
+        <!-- UPDATED: Added 'sandbox-desktop' class to the existing panel -->
+      <div class="draft-panel reveal sandbox-desktop" style="padding: 0; overflow: hidden; max-width: 1000px; margin: 0 auto;">
         
         <div style="background: var(--ink-raised); border-bottom: 1px solid var(--line-strong); padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center;">
           <div class="tag" style="margin: 0; border: none; padding: 0; width: 100%;">
