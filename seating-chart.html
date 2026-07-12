@@ -258,5 +258,56 @@
 
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 <script src="js/main.js"></script>
+
+    <script type="module">
+  // Import Firebase modules
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+  // Your standard Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBsdmq5cRa56FkA--ZHJCNeQK30CqNKOUg",
+    authDomain: "mondrian-seating-plan.firebaseapp.com",
+    projectId: "mondrian-seating-plan",
+    // ... other config variables
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const submitBtn = document.getElementById('lite-submit');
+  const emailInput = document.getElementById('lite-email');
+  const statusText = document.getElementById('lite-status');
+
+  submitBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    try {
+      await addDoc(collection(db, "tableco_lite_requests"), {
+        email: email,
+        status: "pending",
+        timestamp: serverTimestamp()
+      });
+      
+      // Instant UI feedback
+      emailInput.style.display = "none";
+      submitBtn.style.display = "none";
+      statusText.textContent = "● Link sent! Check your inbox.";
+      statusText.style.display = "block";
+    } catch (e) {
+      console.error("Error adding document: ", e);
+      statusText.textContent = "Error sending request. Please try again.";
+      statusText.style.color = "#ef4444";
+      statusText.style.display = "block";
+      submitBtn.textContent = "Send Link";
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+    
 </body>
 </html>
