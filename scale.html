@@ -7,6 +7,57 @@
     <meta name="description" content="Real-time audience polling software for corporate events. Zero-latency voting system using attendees' phones and FOH vision mixers. $9.99 per event.">
     <link rel="stylesheet" href="css/main.css">
 
+    <!-- MOBILE OPTIMIZATION STYLES -->
+    <style>
+        /* Sandbox Grid Stacking for Mobile */
+        .sandbox-grid {
+            display: flex;
+            flex-direction: column;
+        }
+        .sandbox-col-1 {
+            border-bottom: 1px solid var(--line-strong);
+            border-right: none;
+        }
+        
+        /* Iframe Mobile Scaling Tweaks */
+        .audience-app-frame {
+            transform: scale(0.6) !important; /* Larger on mobile for tapping */
+        }
+        .main-display-frame {
+            transform: scale(0.6) !important;
+        }
+
+        /* Desktop Overrides */
+        @media (min-width: 800px) {
+            .sandbox-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+            }
+            .sandbox-col-1 {
+                border-right: 1px solid var(--line-strong);
+                border-bottom: none;
+            }
+            .audience-app-frame {
+                transform: scale(0.3333) !important;
+            }
+            .main-display-frame {
+                transform: scale(0.5) !important;
+            }
+        }
+        
+        /* Mobile CTA Stacking */
+        .hero-inputs {
+            display: flex; 
+            flex-direction: column; /* Stacks input and button on mobile */
+            gap: 10px;
+        }
+        @media (min-width: 600px) {
+            .hero-inputs {
+                flex-direction: row; /* Side-by-side on desktop */
+            }
+        }
+    </style>
+
     <!-- FIREBASE CDN FOR FIRESTORE (Required for email capture) -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
@@ -90,30 +141,25 @@
         <h1 class="hero-title">Interactive<br><em>Audience Polling.</em></h1>
         <p class="hero-sub" style="margin-left: auto; margin-right: auto;">A real-time physics engine that turns any presentation into a massive interactive experience. Hundreds of phones. One live screen. Zero latency.</p>
         
-        <!-- REVISED HERO CTA SECTION -->
         <div class="hero-ctas" style="flex-direction: column; align-items: center; gap: 1.5rem; margin-top: 2.5rem;">
             
-            <!-- Free Tier Capture Box -->
             <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--line-strong); border-radius: 8px; padding: 1.5rem; width: 100%; max-width: 500px;">
                 <p style="margin-top: 0; margin-bottom: 1rem; font-weight: bold; font-size: 1rem; color: #fff;">Try now for free. Get an instant test link:</p>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <input type="email" id="scaleco-hero-email" placeholder="Enter your email" style="flex-grow: 1; padding: 0.75rem 1rem; border: 1px solid var(--line-strong); border-radius: 4px; background: var(--ink); color: #fff; font-family: inherit; min-width: 200px;">
-                    <button id="scaleco-hero-submit" class="btn btn-marker" style="padding: 0.75rem 1.5rem; cursor: pointer; white-space: nowrap; flex-grow: 1;">Send Free Link</button>
+                <div class="hero-inputs">
+                    <input type="email" id="scaleco-hero-email" placeholder="Enter your email" style="flex-grow: 1; padding: 0.75rem 1rem; border: 1px solid var(--line-strong); border-radius: 4px; background: var(--ink); color: #fff; font-family: inherit; width: 100%; box-sizing: border-box;">
+                    <button id="scaleco-hero-submit" class="btn btn-marker" style="padding: 0.75rem 1.5rem; cursor: pointer; white-space: nowrap; width: 100%;">Send Free Link</button>
                 </div>
                 <p id="scaleco-hero-success" style="color: #4ade80; display: none; margin-top: 10px; font-weight: bold; font-size: 0.9rem;">✅ Links sent! Check your inbox.</p>
             </div>
 
-            <!-- Divider -->
             <div style="color: var(--paper-dim); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;">&mdash; OR &mdash;</div>
 
-            <!-- Secondary Actions -->
-            <div style="display: flex; gap: 1.5rem; align-items: center; justify-content: center; flex-wrap: wrap;">
-                <a href="https://buy.stripe.com/eVq14h1yt2595on2i1bwk03" class="btn btn-marker">Deploy Pro Event — $9.99</a>
+            <div style="display: flex; gap: 1.5rem; align-items: center; justify-content: center; flex-wrap: wrap; flex-direction: column; width: 100%;">
+                <a href="https://buy.stripe.com/eVq14h1yt2595on2i1bwk03" class="btn btn-marker" style="width: 100%; max-width: 300px; text-align: center; justify-content: center;">Deploy Pro Event — $9.99</a>
                 <a href="#demo" style="color: #fff; text-decoration: underline; font-size: 0.95rem; font-weight: 600;">Test the Sandbox &darr;</a>
             </div>
 
         </div>
-        <!-- END REVISED HERO CTA -->
 
       </div>
     </div>
@@ -140,14 +186,16 @@
            <iframe src="https://daveco77.github.io/Dave-Co-Scale/admin?event=cs_live_a1GdQGhaPyHzHv5ABMMsXdld898aZewWDYh5MXGbmOIwUk8NC85m7KdKvN" style="width: 100%; height: 500px; border: 0; background: #000;" title="Admin Panel" loading="lazy"></iframe>
         </div>
 
-        <div style="display: grid; grid-template-columns: 2fr 1fr; border-bottom: 1px solid var(--line-strong);">
+        <!-- RESPONSIVE SANDBOX GRID APPLIED HERE -->
+        <div class="sandbox-grid" style="border-bottom: 1px solid var(--line-strong);">
             
-            <div style="display: flex; flex-direction: column; border-right: 1px solid var(--line-strong);">
+            <div class="sandbox-col-1" style="display: flex; flex-direction: column;">
                 <div style="background: var(--ink); padding: 0.5rem 1.5rem; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.75rem; color: var(--marker);">[MAIN AV DISPLAY] — Plug into your vision mixer</div>
-                <div style="padding: 2rem; background: #0b0b0b; height: 100%; display: flex; align-items: center; justify-content: center;">
-                    <div style="width: 100%; aspect-ratio: 16/9; border: 4px solid #222; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative;">
+                <div style="padding: 2rem; background: #0b0b0b; height: 100%; display: flex; align-items: center; justify-content: center; min-height: 250px;">
+                    <div style="width: 100%; aspect-ratio: 16/9; border: 4px solid #222; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; display: flex; align-items: center; justify-content: center;">
                         <iframe src="https://daveco77.github.io/Dave-Co-Scale/view?event=cs_live_a1GdQGhaPyHzHv5ABMMsXdld898aZewWDYh5MXGbmOIwUk8NC85m7KdKvN" 
-                                style="width: 200%; height: 200%; border: 0; pointer-events: none; transform: scale(0.5); transform-origin: top left;" 
+                                class="main-display-frame"
+                                style="width: 200%; height: 200%; border: 0; pointer-events: none; transform-origin: center center;" 
                                 title="Main Display" 
                                 loading="lazy">
                         </iframe>
@@ -157,10 +205,11 @@
 
             <div style="display: flex; flex-direction: column;">
                 <div style="background: var(--ink); padding: 0.5rem 1.5rem; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.75rem; color: var(--marker);">[AUDIENCE APP] — Tap to vote</div>
-                <div style="padding: 2rem 1rem; background: #0b0b0b; height: 100%; display: flex; justify-content: center; align-items: center;">
-                    <div style="width: 100%; max-width: 320px; height: 600px; border: 12px solid #222; border-radius: 36px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative;">
+                <div style="padding: 2rem 1rem; background: #0b0b0b; height: 100%; display: flex; justify-content: center; align-items: center; min-height: 400px;">
+                    <div style="width: 100%; max-width: 320px; height: 600px; border: 12px solid #222; border-radius: 36px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative; display: flex; align-items: center; justify-content: center;">
                         <iframe src="https://daveco77.github.io/Dave-Co-Scale/control?event=cs_live_a1GdQGhaPyHzHv5ABMMsXdld898aZewWDYh5MXGbmOIwUk8NC85m7KdKvN" 
-                                style="width: 300%; height: 300%; border: 0; background: #0b1016; transform: scale(0.3333); transform-origin: top left;" 
+                                class="audience-app-frame"
+                                style="width: 300%; height: 300%; border: 0; background: #0b1016; transform-origin: center top;" 
                                 title="Audience Mobile App" 
                                 loading="lazy">
                         </iframe>
