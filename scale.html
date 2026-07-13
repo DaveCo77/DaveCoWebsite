@@ -7,6 +7,10 @@
     <meta name="description" content="Real-time audience polling software for corporate events. Zero-latency voting system using attendees' phones and FOH vision mixers. $14.99 per event.">
     <link rel="stylesheet" href="css/main.css">
 
+    <!-- FIREBASE CDN FOR FIRESTORE (Required for email capture) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X68VEX2VRE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -153,7 +157,14 @@
               <h3 style="margin-top: 0; font-size: 1.5rem;">Interactive Lite</h3>
               <p style="color: var(--paper-dim); margin-bottom: 1.5rem;">Get a working, watermarked copy of the polling app sent to your inbox. Ideal for dry runs, testing the physics engine, and tech rehearsals.</p>
               <div class="w-full">
-                  <script type="text/javascript" src="https://form.jotform.com/jsform/261802001715040"></script>
+                  
+                  <!-- REPLACED JOTFORM WITH FIREBASE EMAIL CAPTURE -->
+                  <div id="scaleco-lite-form" style="display: flex; flex-direction: column; gap: 10px;">
+                      <input type="email" id="scaleco-lite-email" placeholder="Enter your email address" style="padding: 0.75rem 1rem; border: 1px solid var(--line-strong); border-radius: 4px; background: var(--ink); color: #fff; width: 100%; box-sizing: border-box; font-family: inherit;">
+                      <button id="scaleco-lite-submit" class="btn btn-ghost" style="padding: 0.75rem 1.5rem; width: 100%; text-align: center; justify-content: center; cursor: pointer;">Send Free Link</button>
+                      <p id="scaleco-success-msg" style="color: #4ade80; display: none; margin-top: 10px; font-weight: bold;">✅ Links sent! Check your inbox.</p>
+                  </div>
+
               </div>
           </div>
 
@@ -265,5 +276,60 @@
 
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 <script src="js/main.js"></script>
+
+<!-- FIREBASE SUBMIT SCRIPT -->
+<script>
+  // 1. ADD YOUR SCALECO FIREBASE CONFIG HERE
+  const firebaseConfig = {
+      apiKey: "YOUR_SCALECO_API_KEY_HERE",
+      authDomain: "YOUR_SCALECO_PROJECT.firebaseapp.com",
+      projectId: "YOUR_SCALECO_PROJECT_ID"
+  };
+
+  // Initialize Firebase (Safeguard in case it's initialized elsewhere)
+  if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+  }
+  const db_fs = firebase.firestore();
+
+  const submitBtn = document.getElementById('scaleco-lite-submit');
+  const emailInput = document.getElementById('scaleco-lite-email');
+  const successMsg = document.getElementById('scaleco-success-msg');
+
+  submitBtn.addEventListener('click', async () => {
+      const email = emailInput.value.trim();
+      
+      // Basic email validation
+      if (!email || !email.includes('@')) {
+          alert('Please enter a valid email address.');
+          return;
+      }
+
+      // UI state change
+      submitBtn.textContent = 'Deploying Workspace...';
+      submitBtn.disabled = true;
+
+      try {
+          // Write to the specific ScaleCo Firestore collection
+          await db_fs.collection('scaleco_lite_requests').add({
+              email: email,
+              status: 'pending',
+              timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          });
+          
+          // Hide form, show success
+          emailInput.style.display = 'none';
+          submitBtn.style.display = 'none';
+          successMsg.style.display = 'block';
+
+      } catch (error) {
+          console.error("Error writing to Firestore: ", error);
+          submitBtn.textContent = 'Send Free Link';
+          submitBtn.disabled = false;
+          alert('Failed to connect to the server. Please try again or check console logs.');
+      }
+  });
+</script>
+
 </body>
 </html>
