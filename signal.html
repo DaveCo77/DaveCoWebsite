@@ -59,8 +59,7 @@
     </nav>
 
     <div class="head-actions">
-
-      <a href="https://buy.stripe.com/4gM28ldhb115g31bSBbwk06" class="btn btn-marker">Deploy Matrix — $14.99</a>
+      <a href="#deploy" class="btn btn-marker">Deploy Free Matrix</a>
       <button type="button" class="nav-toggle" data-nav-open aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
@@ -97,40 +96,55 @@
         <h1 class="hero-title">SignalCo<br><em>Matrix.</em></h1>
         <p class="hero-sub" style="margin-left: auto; margin-right: auto;">Ditch the noisy radio chatter. Deploy a zero-latency, site-wide digital comms matrix with global show cues and instant device syncing.</p>
         <div class="hero-ctas" style="justify-content: center;">
-          <a href="https://buy.stripe.com/4gM28ldhb115g31bSBbwk06" class="btn btn-marker">Launch Event — $14.99</a>
+          <a href="#deploy" class="btn btn-marker">Launch Sandbox Environment</a>
           <a href="#features" class="btn btn-ghost">Explore Features ↓</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRICING & DEPLOYMENT SECTION -->
-  <section class="block strip" style="padding-top: 5rem; padding-bottom: 5rem;">
+  <!-- DYNAMIC TRIAL DEPLOYMENT FORM SECTION -->
+  <section id="deploy" class="block strip" style="padding-top: 5rem; padding-bottom: 5rem;">
     <div class="wrap reveal">
-        <div style="background: var(--ink-raised); padding: 3rem; border: 1px solid var(--marker); border-radius: 8px; position: relative; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; md:flex-row; gap: 3rem; align-items: center;">
+        <div style="background: var(--ink-raised); padding: 3rem; border: 1px solid var(--marker); border-radius: 8px; position: relative; max-width: 900px; margin: 0 auto;">
             
-            <div style="position: absolute; top: -12px; left: 32px; background: var(--marker); color: #000; font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;">Cloud Deployed</div>
+            <div style="position: absolute; top: -12px; left: 32px; background: var(--marker); color: #000; font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;">Instant Deployment</div>
             
-            <div style="flex: 1;">
-                <h2 style="margin-top: 0; font-size: 2rem; margin-bottom: 1rem;">SignalCo Pro — $14.99</h2>
-                <p style="color: var(--paper-dim); font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">Instantly spin up an isolated, secure Firebase communications network for your next live event. Generate unlimited endpoints for FOH, Backstage, and roaming crew.</p>
+            <div id="intakeFormContainer" style="display: flex; flex-direction: column; md:flex-row; gap: 3rem; align-items: center;">
+                <div style="flex: 1;">
+                    <h2 style="margin-top: 0; font-size: 2rem; margin-bottom: 1rem;">Deploy Free Matrix</h2>
+                    <p style="color: var(--paper-dim); font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem;">Initialize a secure, cloud-synced sandbox environment immediately. Experience zero-latency tracking across global show states before scaling out full crew configurations.</p>
+                    
+                    <ul style="list-style-type: disc; padding-left: 1.25rem; color: var(--paper-dim); line-height: 1.8; margin-bottom: 0;">
+                        <li>Secure web-enabled network routing</li>
+                        <li>Live test sandbox configuration</li>
+                        <li>Global Show Go &amp; Standby indicators</li>
+                        <li>Full console evaluation tier features</li>
+                    </ul>
+                </div>
                 
-                <ul style="list-style-type: disc; padding-left: 1.25rem; color: var(--paper-dim); line-height: 1.8; margin-bottom: 0;">
-                    <li>Secure, isolated event UUID database</li>
-                    <li>Unlimited simultaneous device endpoints</li>
-                    <li>Global Show Go &amp; Standby cues</li>
-                    <li>Twitch-style stream moderation &amp; chat locks</li>
-                </ul>
+                <div style="min-width: 320px; width: 100%; md:width: auto;">
+                    <form id="signalIntakeForm" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="text-align: left;">
+                            <label for="userEmail" style="display: block; font-size: 0.8rem; text-transform: uppercase; color: var(--paper-dim); margin-bottom: 0.5rem; letter-spacing: 1px;">Production Email Address</label>
+                            <input type="email" id="userEmail" required placeholder="name@productioncompany.com" autocomplete="off"
+                                   style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid var(--line-strong); border-radius: 4px; color: #fff; font-family: monospace; box-sizing: border-box;">
+                        </div>
+                        <button type="submit" id="submitBtn" class="btn btn-marker" style="width: 100%; text-align: center; justify-content: center; padding: 1rem; font-size: 1rem;">
+                            Initialize System Matrix
+                        </button>
+                    </form>
+                </div>
             </div>
-            
-            <div style="min-width: 250px; text-align: center;">
-                <a href="#" class="btn btn-marker" style="width: 100%; text-align: center; justify-content: center; padding: 1.25rem; font-size: 1.1rem;">Buy Full Version</a>
-                <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--paper-dim); display: flex; align-items: center; justify-content: center; gap: 6px;">
-                    <svg width="24" height="24" viewBox="0 0 40 40" fill="currentColor">
-                        <path d="M19.74,13.62c-2.31,0-4.04,1.06-4.04,2.79c0,1.54,1.44,2.4,3.75,2.98l2.12,.58c2.98,.77,4.81,2.02,4.81,4.52,0,3.37-3.17,5.58-7.79,5.58-3.08,0-6.15-1.15-8.46-2.69l1.44-4.13c2.4,1.35,5.19,2.4,7.4,2.4,2.6,0,4.23-1.06,4.23-2.88,0-1.63-1.35-2.5-3.85-3.08l-1.92-.48c-3.17-.87-4.81-2.21-4.81-4.52,0-3.37,3.08-5.38,7.31-5.38,2.79,0,5.29,.87,7.4,2.12l-1.44,4.04c-1.92-1.06-4.23-1.83-6.15-1.83Z"/>
-                    </svg>
-                    Secure payment powered by Stripe
+
+            <!-- SUCCESS FEEDBACK CARD -->
+            <div id="successStateCard" style="display: none; text-align: center; padding: 2rem 0;">
+                <div style="font-size: 3rem; color: #10b981; margin-bottom: 1rem;">✓</div>
+                <h3 style="font-size: 1.75rem; margin-top: 0; margin-bottom: 0.5rem; color: #fff;">Environment Built Successfully</h3>
+                <p style="color: var(--paper-dim); max-width: 500px; margin: 0 auto 1.5rem auto; line-height: 1.6;">
+                    System nodes generated. Check your inbox for the secure access credentials and terminal workspace configurations.
                 </p>
+                <button onclick="window.location.reload()" class="btn btn-ghost" style="margin: 0 auto;">Deploy Another Matrix</button>
             </div>
 
         </div>
@@ -177,7 +191,7 @@
   <section class="cta-band">
     <div class="wrap reveal">
       <h3>Ready to silence the radio chatter?</h3>
-      <a href="#" class="btn btn-marker">Deploy SignalCo — $14.99</a>
+      <a href="#deploy" class="btn btn-marker">Deploy Sandbox Matrix</a>
     </div>
   </section>
 
@@ -222,5 +236,56 @@
 
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 <script src="js/main.js"></script>
+
+<!-- FIREBASE INTEGRATION SETUP -->
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+
+<script>
+    // Config targeting the distinct Firestore project instance
+    const firebaseConfig = {
+        apiKey: "AIzaSyBR-uD3eGhSkAFJSikQ6zSBGD_wspb-Aqo",
+        authDomain: "aime-marketing-app.firebaseapp.com",
+        projectId: "aime-marketing-app",
+        storageBucket: "aime-marketing-app.firebasestorage.app",
+        messagingSenderId: "600284637753",
+        appId: "1:600284637753:web:daec455bb50dc126fc7be8"
+    };
+
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    const store = firebase.firestore();
+
+    document.getElementById('signalIntakeForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const emailInput = document.getElementById('userEmail').value.trim();
+        const actionButton = document.getElementById('submitBtn');
+        
+        if (!emailInput) return;
+        
+        actionButton.innerText = "INITIALIZING ARCHITECTURE...";
+        actionButton.disabled = true;
+        
+        // Feed target funnel log directly into the designated air-gapped queue
+        store.collection("signalco_lite_requests").add({
+            email: emailInput,
+            status: "pending",
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then(() => {
+            document.getElementById('intakeFormContainer').style.display = 'none';
+            document.getElementById('successStateCard').style.display = 'block';
+        })
+        .catch((error) => {
+            console.error("Firestore submission anomaly detected: ", error);
+            alert("Network connection failure. Verify environment and execute sequence retry: " + error.message);
+            actionButton.innerText = "RETRY DEPLOYMENT SEQUENCE";
+            actionButton.disabled = false;
+        });
+    });
+</script>
+
 </body>
 </html>
