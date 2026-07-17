@@ -63,6 +63,15 @@
   }
 }
 </script>
+
+<!-- Reddit Pixel -->
+<script>
+!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jafvsessbw9m",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+rdt('init','a2_jafvsessbw9m');
+rdt('track', 'PageVisit');
+</script>
+<!-- End Reddit Pixel -->
+    
 </head>
 <body>
 
@@ -124,7 +133,7 @@
                 <div style="display: flex; gap: 0.5rem; width: 100%; flex-wrap: wrap;">
                     <input type="email" id="lite-email-hero" placeholder="Enter your email" required
                            style="flex: 1; min-width: 200px; padding: 0.75rem 1rem; border-radius: 4px; border: 1px solid var(--line-strong); background: var(--ink); color: var(--paper); font-family: inherit;">
-<button id="lite-submit-hero" class="btn btn-marker" style="padding: 0.75rem 1.5rem; cursor: pointer; white-space: nowrap; flex-grow: 1;">Send Free Link</button>               
+<button id="lite-submit-hero" class="btn btn-marker" style="padding: 0.75rem 1.5rem; cursor: pointer; white-space: nowrap; flex-grow: 1;">Send Free Link</button>                
                 </div>
                 <p id="lite-status-hero" style="width: 100%; margin: 0; font-size: 0.85rem; color: #4ade80; display: none; text-align: center;"></p>
             </div>
@@ -364,6 +373,12 @@
         status: "pending",
         timestamp: serverTimestamp()
       });
+      
+      // FIRE REDDIT PIXEL CONVERSION (Lead) with Advanced Matching
+      if (typeof rdt !== 'undefined') {
+          rdt('init', 'a2_jafvsessbw9m', { "email": email });
+          rdt('track', 'Lead');
+      }
       
       // Instant UI feedback
       emailInput.style.display = "none";
