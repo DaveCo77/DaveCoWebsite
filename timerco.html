@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud-Based Stage Timer and DSM Software | Pixel Array</title>
+    <meta name="description" content="Zero-latency stage timer and Downstage Monitor (DSM) software. Sync FOH show callers with the main stage instantly. No subscription, deploy for $9.99 per event.">
+    
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+  /* Base CSS overrides for TimerCo blue theme */
+  :root {
+      --marker: #3b82f6 !important; 
+  }
+
+  /* Mobile Optimizations for Reddit Traffic */
+  @media (max-width: 768px) {
+    /* Hide the heavy double-iframe sandbox on phones */
+    .sandbox-desktop { 
+      display: none !important; 
+    }
+    /* Show a lightweight fallback message */
+    .sandbox-mobile { 
+      display: block !important; 
+      background: var(--ink-raised); 
+      padding: 2rem; 
+      border-radius: 8px; 
+      text-align: center; 
+      border: 1px solid var(--line-strong); 
+      margin: 0 auto;
+      max-width: 90%;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    /* Hide the mobile fallback on desktop */
+    .sandbox-mobile { 
+      display: none !important; 
+    }
+  }
+</style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X68VEX2VRE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-X68VEX2VRE');
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "TimerCo Stage Timer",
+  "operatingSystem": "Web browser",
+  "applicationCategory": "BusinessApplication",
+  "description": "A cloud-based stage timer and Downstage Monitor (DSM) provisioner built specifically for live event professionals.",
+  "offers": {
+    "@type": "Offer",
+    "price": "9.99",
+    "priceCurrency": "AUD",
+    "availability": "https://schema.org/InStock"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pixel Array"
+  }
+}
+</script>
+
+<!-- Reddit Pixel -->
+<script>
+!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jafvsessbw9m",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+rdt('init','a2_jafvsessbw9m');
+rdt('track', 'PageVisit');
+</script>
+<!-- End Reddit Pixel -->
+    
+</head>
+<body>
+
+<a href="#main" class="sr-only focus:absolute">Skip to content</a>
+
+<header class="site-head">
+  <div class="head-row">
+    <a href="index.html" class="brand"><span class="mark" aria-hidden="true"></span>Pixel<span class="x">Array</span></a>
+
+    <nav class="primary" aria-label="Primary">
+      <a href="index.html#renders">Renders &amp; CAD</a>
+      <a href="index.html#software">Software</a>
+      <a href="timerco.html" style="color: var(--paper); border-color: var(--line-strong);">Stage Timer</a>
+      <a href="pay.html">Pay invoice</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="head-actions">
+      <a href="https://buy.stripe.com/eVq14h1yt2595on2i1bwk03" class="btn btn-marker">Activate Event — $9.99</a>
+      <button type="button" class="nav-toggle" data-nav-open aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="scrim" data-scrim></div>
+<nav id="mobile-nav" class="mobile-panel" data-nav-panel aria-label="Mobile">
+  <button class="close" data-nav-close aria-label="Close menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+  <a href="index.html#renders">Renders &amp; CAD</a>
+  <a href="index.html#software">Software</a>
+  <a href="timerco.html">Stage Timer</a>
+  <a href="pay.html">Pay invoice</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="https://buy.stripe.com/eVq14h1yt2595on2i1bwk03" style="color: var(--marker);">Activate Event — $9.99</a>
+</nav>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="crosshair" aria-hidden="true"></div>
+    <div class="hud" aria-hidden="true">X <span data-hud-x>0000</span> &nbsp; Y <span data-hud-y>0000</span></div>
+
+    <div class="wrap hero-inner" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto; text-align: center;">
+      <div class="reveal">
+        <p class="eyebrow">Event Software Suite</p>
+        <h1 class="hero-title">TimerCo.<br><em>Stage timers.</em></h1>
+        <p class="hero-sub" style="margin-left: auto; margin-right: auto; max-width: 700px;">A zero-latency, cloud-based downstage monitor (DSM) and show caller timing system. Deploy to the main stage instantly.</p>
+        
+        <!-- HERO CTA SECTION -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-top: 2.5rem;">
+            
+            <!-- Email Capture Box -->
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid var(--line-strong); padding: 1.25rem; border-radius: 8px; display: flex; flex-direction: column; gap: 0.75rem; align-items: center; justify-content: center; max-width: 500px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                <span style="color: var(--paper); font-weight: 600; font-size: 0.95rem;">Try now for free. Get an instant test link:</span>
+                <div style="display: flex; gap: 0.5rem; width: 100%; flex-wrap: wrap;">
+                    <input type="email" id="lite-email-hero" placeholder="Enter your email" required
+                           style="flex: 1; min-width: 200px; padding: 0.75rem 1rem; border-radius: 4px; border: 1px solid var(--line-strong); background: var(--ink); color: var(--paper); font-family: inherit;">
+<button id="lite-submit-hero" class="btn btn-marker" style="padding: 0.75rem 1.5rem; cursor: pointer; white-space: nowrap; flex-grow: 1;">Send Free Link</button>                
+                </div>
+                <p id="lite-status-hero" style="width: 100%; margin: 0; font-size: 0.85rem; color: #4ade80; display: none; text-align: center;"></p>
+            </div>
+
+            <p style="color: var(--paper-dim); font-size: 0.9rem; margin: 0; text-transform: uppercase; letter-spacing: 1px;">— or —</p>
+
+            <!-- Purchase & Sandbox Links -->
+            <div class="hero-ctas" style="justify-content: center; margin-top: 0;">
+                <a href="https://buy.stripe.com/eVq14h1yt2595on2i1bwk03" class="btn btn-marker">Deploy Pro Event — $9.99</a>
+                <a href="#demo" class="btn btn-ghost" style="border: none; text-decoration: underline;">Test the Sandbox ↓</a>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo" class="block strip" style="padding-top: 4rem; padding-bottom: 4rem;">
+    <div class="wrap">
+        <div class="block-head reveal" style="text-align: center; margin: 0 auto 3rem;">
+            <h2>Live Interactive Sandbox</h2>
+            <p>Experience the zero-latency sync. Add a minute from the Master Control and watch it instantly update on the Downstage Monitor preview.</p>
+        </div>
+
+        <!-- Mobile Fallback Message -->
+        <div class="sandbox-mobile reveal">
+            <h3 style="margin-top:0; font-size: 1.25rem;">Live Demo is Desktop Only</h3>
+            <p style="color: var(--paper-dim); font-size: 0.9rem; margin-bottom: 0;">To keep your browsing experience lightning fast, the dual-screen live sync demo is disabled on mobile devices. Request your free Lite link below to test the timer on this phone!</p>
+        </div>
+
+      <div class="draft-panel reveal sandbox-desktop" style="padding: 0; overflow: hidden; max-width: 1000px; margin: 0 auto;">
+        
+        <div style="background: var(--ink-raised); border-bottom: 1px solid var(--line-strong); padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+          <div class="tag" style="margin: 0; border: none; padding: 0; width: 100%;">
+              <span>ENV: PRODUCTION</span>
+              <span style="color: #4ade80;">● LIVE SYNC ACTIVE</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; border-bottom: 1px solid var(--line-strong);">
+           <div style="background: var(--ink); padding: 0.5rem 1.5rem; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.75rem; color: var(--blueprint);">[SHOW CALLER CONTROL DESK] — Start timer & type messages here</div>
+           <!-- Update these URLs to your live TimerCo GitHub Pages URLs once deployed -->
+           <iframe src="https://daveco77.github.io/TimerCo/timer.html?event=demo_sandbox" style="width: 100%; height: 600px; border: 0; background: var(--ink);" title="Control Panel" loading="lazy"></iframe>
+        </div>
+
+   <!-- UPDATED DSM DISPLAY (LANDSCAPE 16:9 CHASSIS) -->
+        <div style="display: flex; flex-direction: column;">
+           <div style="background: var(--ink); padding: 0.5rem 1.5rem; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.75rem; color: var(--marker);">[LIVE DOWNSTAGE MONITOR] — Watch it update instantly</div>
+           <div style="padding: 3rem 1rem; background: #0b0b0b; display: flex; justify-content: center; align-items: center;">
+               
+               <!-- 16:9 Stage Monitor Chassis -->
+               <div style="width: 100%; max-width: 800px; aspect-ratio: 16/9; border: 8px solid #222; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative; background: #000;">
+                   
+                   <!-- The Scaled Iframe Trick -->
+                   <iframe src="https://daveco77.github.io/TimerCo/dsm.html?event=demo_sandbox" 
+                           style="width: 200%; height: 200%; border: 0; background: #000; pointer-events: none; transform: scale(0.5); transform-origin: top left;" 
+                           title="Live DSM" 
+                           loading="lazy">
+                   </iframe>
+                   
+               </div>
+           </div>
+        </div>
+
+      </div>
+
+      <!-- LITE VS PRO SECTION -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 5rem; text-align: left; max-width: 1000px; margin-left: auto; margin-right: auto;" class="reveal">
+          
+          <!-- LITE TIER (CARD) -->
+          <div style="background: var(--ink); padding: 2rem; border: 1px solid var(--line-strong); border-radius: 8px; position: relative; display: flex; flex-direction: column;">
+              <div style="position: absolute; top: -12px; right: 24px; background: var(--line-strong); color: var(--paper); font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;">Free</div>
+              <p class="eyebrow" style="color: var(--paper-dim);">Test Environment</p>
+              <h3 style="margin-top: 0; font-size: 1.5rem;">TimerCo Lite</h3>
+              <p style="color: var(--paper-dim);">Try now for free. Get an instant, private sandbox sent straight to your inbox to test the zero-latency sync logic and flashing alerts.</p>
+              <ul style="list-style-type: disc; padding-left: 1.25rem; margin-top: 1.5rem; margin-bottom: 2.5rem; color: var(--paper-dim); line-height: 1.8;">
+                  <li>Live zero-latency sync</li>
+                  <li>Master Control & DSM views</li>
+                  <li>Pixel Array watermark</li>
+                  <li>Temporary test database</li>
+              </ul>
+              
+              <div id="lite-form-wrapper" style="margin-top: auto;">
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                      <input type="email" id="lite-email-card" placeholder="Enter your email" required
+                             style="width: 100%; padding: 0.75rem 1rem; border-radius: 4px; border: 1px solid var(--line-strong); background: var(--ink-raised); color: var(--paper); font-family: inherit; box-sizing: border-box;">
+                      <button id="lite-submit-card" class="btn btn-ghost" style="width: 100%; text-align: center; justify-content: center; padding: 0.75rem 1.5rem; border: 1px solid var(--line-strong); cursor: pointer; background: transparent; color: var(--paper);">Send Free Link</button>
+                  </div>
+                  <p id="lite-status-card" style="margin-top: 0.75rem; font-size: 0.85rem; color: #4ade80; display: none; text-align: center;"></p>
+              </div>
+          </div>
+
+          <!-- PREMIUM TIER (STRIPE) -->
+          <div style="background: var(--ink-raised); padding: 2rem; border: 1px solid var(--marker); border-radius: 8px; position: relative; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+              <div style="position: absolute; top: -12px; right: 24px; background: var(--marker); color: #000; font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;">Premium</div>
+              <p class="eyebrow" style="color: var(--marker);">Professional Use</p>
+              <h3 style="margin-top: 0; font-size: 1.5rem;">TimerCo Pro — $9.99</h3>
+              <p style="color: var(--paper-dim);">Deploy your countdown timer to the main stage. Run limitless sessions, flash custom cues to your presenters, and manage the event timeline seamlessly.</p>
+              <ul style="list-style-type: disc; padding-left: 1.25rem; margin-top: 1.5rem; margin-bottom: 2.5rem; color: var(--paper-dim); line-height: 1.8;">
+                  <li>Zero Pixel Array watermarks</li>
+                  <li>Custom presenter messaging</li>
+                  <li>Overtime screen pulsing alerts</li>
+                  <li>Priority cloud infrastructure</li>
+              </ul>
+              
+              <div style="margin-top: auto;">
+                  <a href="https://buy.stripe.com/eVq14h1yt2595on2i1bwk03" class="btn btn-marker" style="width: 100%; text-align: center; justify-content: center; box-sizing: border-box;">Deploy Pro Event — $9.99</a>
+                  <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--paper-dim); display: flex; align-items: center; justify-content: center; gap: 6px;">
+                      <svg width="24" height="24" viewBox="0 0 40 40" fill="currentColor">
+                          <path d="M19.74,13.62c-2.31,0-4.04,1.06-4.04,2.79c0,1.54,1.44,2.4,3.75,2.98l2.12,.58c2.98,.77,4.81,2.02,4.81,4.52,0,3.37-3.17,5.58-7.79,5.58-3.08,0-6.15-1.15-8.46-2.69l1.44-4.13c2.4,1.35,5.19,2.4,7.4,2.4,2.6,0,4.23-1.06,4.23-2.88,0-1.63-1.35-2.5-3.85-3.08l-1.92-.48c-3.17-.87-4.81-2.21-4.81-4.52,0-3.37,3.08-5.38,7.31-5.38,2.79,0,5.29,.87,7.4,2.12l-1.44,4.04c-1.92-1.06-4.23-1.83-6.15-1.83Z"/>
+                      </svg>
+                      Secure payment powered by Stripe
+                  </p>
+              </div>
+          </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section id="features" class="block">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <p class="eyebrow">Technical Specifications</p>
+        <h2>Engineered for Live Production</h2>
+        <p>Everything you need to keep your show running on time and keep your presenters perfectly informed without the lag.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature reveal">
+          <span class="frame-no">SPEC 01</span>
+          <h3>Zero-Latency Math Engine</h3>
+          <p>Instead of relying on network pings every second, TimerCo calculates the clock locally on the stage monitor. If the venue Wi-Fi drops out, the timer keeps ticking flawlessly.</p>
+        </article>
+
+        <article class="feature reveal" style="transition-delay:50ms">
+          <span class="frame-no">SPEC 02</span>
+          <h3>Flash Messaging</h3>
+          <p>Need to tell a speaker to skip the next slide? Type a custom message at the FOH control desk and flash it instantly to the screen in a high-visibility yellow alert.</p>
+        </article>
+
+        <article class="feature reveal" style="transition-delay:100ms">
+          <span class="frame-no">SPEC 03</span>
+          <h3>Overtime Alerts</h3>
+          <p>When the clock hits zero, it automatically begins counting upwards into the negative, and the entire DSM screen smoothly pulses red to firmly let the presenter know they need to wrap up.</p>
+        </article>
+
+        <article class="feature reveal" style="transition-delay:150ms">
+          <span class="frame-no">SPEC 04</span>
+          <h3>One-Click Deployment</h3>
+          <p>No software to install on the venue's laptops. Simply hit 'Copy DSM Link' and drop it into a browser on any iPad or monitor to instantly link it to your control desk.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap reveal">
+      <h3>Ditch the clunky timer apps. Deploy a professional stage clock in 60 seconds.</h3>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="https://buy.stripe.com/eVq14h1yt2595on2i1bwk03" class="btn btn-marker">Deploy Pro Event — $9.99</a>
+          <a href="#main" class="btn btn-ghost">Try now for free</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col" style="grid-column: span 2;">
+        <p class="brand" style="margin-bottom:0.75rem;"><span class="mark" aria-hidden="true"></span>Pixel<span class="x">Array</span></p>
+        <p style="color:var(--paper-dim);font-size:0.88rem;line-height:1.6;max-width:22rem;">3D rendering, CAD documentation and custom event software, drawn and built in-house.</p>
+      </div>
+      <div class="foot-col">
+        <p class="ft-head">Studio</p>
+        <a href="index.html#renders">3D rendering</a>
+        <a href="index.html#renders">CAD &amp; technical drawings</a>
+      </div>
+      <div class="foot-col">
+        <p class="ft-head">Software</p>
+        <a href="index.html#software">Event software suite</a>
+        <a href="timerco.html" style="color: var(--paper);">Stage Timer tool</a>
+      </div>
+      <div class="foot-col">
+        <p class="ft-head">Clients</p>
+        <a href="pay.html">Pay invoice</a>
+        <a href="index.html#contact">Contact studio</a>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <small>© <span id="y"></span> Pixel Array.</small>
+      <span class="legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<script src="js/main.js"></script>
+
+    <script type="module">
+  // Import Firebase modules
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+  // Your standard Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBsdmq5cRa56FkA--ZHJCNeQK30CqNKOUg",
+    authDomain: "mondrian-seating-plan.firebaseapp.com",
+    projectId: "mondrian-seating-plan",
+    // ... other config variables
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app, "mondrianfirestoreid");
+
+  // Reusable function to handle both form inputs (hero and card)
+  async function submitLiteRequest(emailInputId, submitBtnId, statusTextId) {
+    const emailInput = document.getElementById(emailInputId);
+    const submitBtn = document.getElementById(submitBtnId);
+    const statusText = document.getElementById(statusTextId);
+
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    try {
+      // Updated collection to TimerCo
+      await addDoc(collection(db, "timerco_lite_requests"), {
+        email: email,
+        status: "pending",
+        timestamp: serverTimestamp()
+      });
+      
+      // FIRE REDDIT PIXEL CONVERSION (Lead) with Advanced Matching
+      if (typeof rdt !== 'undefined') {
+          rdt('init', 'a2_jafvsessbw9m', { "email": email });
+          rdt('track', 'Lead');
+      }
+      
+      // Instant UI feedback
+      emailInput.style.display = "none";
+      submitBtn.style.display = "none";
+      statusText.textContent = "● Link sent! Check your inbox.";
+      statusText.style.display = "block";
+    } catch (e) {
+      console.error("Error adding document: ", e);
+      statusText.textContent = "Error sending request. Please try again.";
+      statusText.style.color = "#ef4444";
+      statusText.style.display = "block";
+      submitBtn.textContent = originalBtnText;
+      submitBtn.disabled = false;
+    }
+  }
+
+  // Attach event listeners to both forms
+  const heroSubmit = document.getElementById('lite-submit-hero');
+  if (heroSubmit) {
+      heroSubmit.addEventListener('click', () => submitLiteRequest('lite-email-hero', 'lite-submit-hero', 'lite-status-hero'));
+  }
+
+  const cardSubmit = document.getElementById('lite-submit-card');
+  if (cardSubmit) {
+      cardSubmit.addEventListener('click', () => submitLiteRequest('lite-email-card', 'lite-submit-card', 'lite-status-card'));
+  }
+</script>
+    
+</body>
+</html>
