@@ -74,6 +74,15 @@
   }
 }
 </script>
+
+<!-- Reddit Pixel -->
+<script>
+!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_jc4rv49fp3nx",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+rdt('init','a2_jc4rv49fp3nx');
+rdt('track', 'PageVisit');
+</script>
+<!-- End Reddit Pixel -->
+
 </head>
 <body>
 
@@ -371,6 +380,12 @@
                   status: 'pending',
                   timestamp: firebase.firestore.FieldValue.serverTimestamp()
               });
+              
+              // FIRE REDDIT PIXEL CONVERSION (Lead) with Advanced Matching
+              if (typeof rdt !== 'undefined') {
+                  rdt('init', 'a2_jc4rv49fp3nx', { "email": email });
+                  rdt('track', 'Lead');
+              }
               
               emailInput.style.display = 'none';
               submitBtn.style.display = 'none';
