@@ -158,19 +158,20 @@ rdt('track', 'PageVisit');
             <p>Experience the zero-latency sync. Drag a table in the admin panel and watch it move instantly on the attendee display.</p>
         </div>
 
-        <!-- Mobile Fallback Message -->
-        <div class="sandbox-mobile reveal">
-            <h3 style="margin-top:0; font-size: 1.25rem;">Live Demo is Desktop Only</h3>
-            <p style="color: var(--paper-dim); font-size: 0.9rem; margin-bottom: 0;">To keep your browsing experience lightning fast, the dual-screen live sync demo is disabled on mobile devices. Request your free Lite link below to test the kiosk directly on this phone!</p>
-        </div>
-
-      <div class="draft-panel reveal sandbox-desktop" style="padding: 0; overflow: hidden; max-width: 1000px; margin: 0 auto;">
-        
-        <div style="background: var(--ink-raised); border-bottom: 1px solid var(--line-strong); padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-          <div class="tag" style="margin: 0; border: none; padding: 0; width: 100%;">
-              <span>ENV: PRODUCTION</span>
-              <span style="color: #4ade80;">● LIVE SYNC ACTIVE</span>
-          </div>
+<!-- UPDATED MOBILE FALLBACK WITH VIDEO HOOK -->
+<div class="sandbox-mobile reveal">
+    <h3 style="margin-top:0; font-size: 1.25rem; margin-bottom: 1rem;">See the Zero-Latency Sync</h3>
+    
+    <!-- Autoplaying Video Act-Alike -->
+    <div style="width: 100%; border-radius: 6px; overflow: hidden; border: 1px solid var(--line-strong); margin-bottom: 1.25rem; background: #000; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <!-- NOTE: Add your 5-second screen recording MP4 to your assets folder -->
+        <video autoplay loop muted playsinline style="width: 100%; height: auto; display: block; pointer-events: none;">
+            <source src="assets/timer-mobile-demo.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    <p style="color: var(--paper-dim); font-size: 0.9rem; margin-bottom: 0;">The dual-screen interactive demo is heavy, so we keep it desktop-only for speed. Request your free Lite link below to test the live sync directly on this phone!</p>
+</div>
         </div>
 
         <div style="display: flex; flex-direction: column; border-bottom: 1px solid var(--line-strong);">
