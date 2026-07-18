@@ -351,14 +351,18 @@ rdt('track', 'PageVisit');
 
   // Your standard Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyBsdmq5cRa56FkA--ZHJCNeQK30CqNKOUg",
-    authDomain: "mondrian-seating-plan.firebaseapp.com",
-    projectId: "mondrian-seating-plan",
-    // ... other config variables
+    apiKey: "AIzaSyAa_eku03NFVS-BuORZk-LrhHYenliOc2U",
+    authDomain: "stagetimerco.firebaseapp.com",
+    databaseURL: "https://stagetimerco-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "stagetimerco",
+    storageBucket: "stagetimerco.firebasestorage.app",
+    messagingSenderId: "509616370775",
+    appId: "1:509616370775:web:7e7750d74fc30c739f1f12",
+    measurementId: "G-3CE648F5GX"
   };
 
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app, "mondrianfirestoreid");
+  const db = getFirestore(app);
 
   // Reusable function to handle both form inputs (hero and card)
   async function submitLiteRequest(emailInputId, submitBtnId, statusTextId) {
