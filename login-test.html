@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pixel Array | Portal Setup</title>
+    <style>
+        body { background: #0b1016; color: #fff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .auth-box { background: #161b22; padding: 2rem; border-radius: 8px; border: 1px solid #30363d; width: 100%; max-width: 350px; text-align: center; }
+        input { width: 100%; padding: 0.75rem; margin-bottom: 1rem; background: #000; border: 1px solid #30363d; color: #fff; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 0.75rem; background: #3b82f6; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        #status-msg { margin-top: 1rem; font-size: 0.85rem; }
+    </style>
+
+    <!-- FIREBASE CDNs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body>
+
+    <div class="auth-box">
+        <h2 style="margin-top: 0; color: #3b82f6;">Create Account</h2>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="password" id="password" placeholder="Password (min 6 chars)" required>
+        <button id="signup-btn">Sign Up</button>
+        <p id="status-msg"></p>
+    </div>
+
+    <script>
+        // ⚠️ PASTE YOUR CENTRAL FIREBASE CONFIG HERE ⚠️
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT",
+        };
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        const signupBtn = document.getElementById('signup-btn');
+        const statusMsg = document.getElementById('status-msg');
+
+        signupBtn.addEventListener('click', async () => {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!email || password.length < 6) {
+                statusMsg.textContent = "❌ Please enter a valid email and a 6+ character password.";
+                statusMsg.style.color = "#ef4444";
+                return;
+            }
+
+            signupBtn.textContent = "Creating Account...";
+            signupBtn.disabled = true;
+
+            try {
+                // 1. Create the secure login credentials
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+
+                // 2. Build their profile in Firestore, defaulting to the free tier
+                await db.collection('users').doc(user.uid).set({
+                    email: user.email,
+                    status: 'lite', // This is what Stripe will change to 'premium' later!
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                statusMsg.textContent = "✅ Account created successfully!";
+                statusMsg.style.color = "#4ade80";
+
+            } catch (error) {
+                console.error(error);
+                statusMsg.textContent = `❌ Error: ${error.message}`;
+                statusMsg.style.color = "#ef4444";
+                signupBtn.textContent = "Sign Up";
+                signupBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
