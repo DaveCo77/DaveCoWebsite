@@ -1,4 +1,4 @@
-// 1. INJECT FIREBASE CONFIGURATION FIRST
+// 1. INJECT FIREBASE CONFIGURATION
 const firebaseConfig = {
     apiKey: "AIzaSyDKaT-5zrry7pNHkqSFdx-OhhtuAPe97y8",
     authDomain: "pixel-array-net.firebaseapp.com",
@@ -13,7 +13,7 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 
-// 2. NOW INITIALIZE REFERENCES
+// 2. INITIALIZE REFERENCES
 const auth = firebase.auth();
 const db = firebase.firestore();
 
@@ -39,7 +39,7 @@ auth.onAuthStateChanged(async (user) => {
             hubContainer.classList.remove('hidden');
 
             if (userDoc.exists && userDoc.data().status === 'premium') {
-                // USER IS PRO: Show the unlocked tools
+                // USER IS PRO: Show the tools
                 liteUI.classList.add('hidden');
                 premiumUI.classList.remove('hidden');
             } else {
@@ -50,6 +50,7 @@ auth.onAuthStateChanged(async (user) => {
             }
         } catch (error) {
             console.error("Error fetching profile:", error);
+            loading.textContent = "[ ERROR: UNABLE TO REACH AUTH SERVER ]";
         }
     } else {
         // Not logged in at all, boot them to the login screen
@@ -57,8 +58,55 @@ auth.onAuthStateChanged(async (user) => {
     }
 });
 
+// 4. LOGOUT HANDLER
 btnLogout.addEventListener('click', () => {
     auth.signOut().then(() => {
         window.location.replace("login-test.html");
     });
+});
+
+// 5. BACKEND PROVISION REQUEST LOGIC
+async function sendProvisionRequest(appName, btnId, statusId) {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const btn = document.getElementById(btnId);
+    const statusText = document.getElementById(statusId);
+
+    const originalText = btn.textContent;
+    btn.textContent = "TRANSMITTING...";
+    btn.disabled = true;
+
+    try {
+        // Write the request to a centralized queue in Firestore
+        await db.collection('pro_requests').add({
+            uid: user.uid,
+            email: user.email,
+            app: appName,
+            status: 'pending',
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        // UI Feedback
+        btn.style.display = "none";
+        statusText.textContent = `● Sent! Check ${user.email} shortly.`;
+        statusText.style.display = "block";
+
+    } catch (error) {
+        console.error(`Failed to request ${appName}:`, error);
+        statusText.textContent = "Error transmitting request.";
+        statusText.style.color = "#ef4444";
+        statusText.style.display = "block";
+        btn.textContent = originalText;
+        btn.disabled = false;
+    }
+}
+
+// Attach listeners to the Request Buttons
+document.getElementById('btn-req-tableco').addEventListener('click', () => {
+    sendProvisionRequest('TableCo', 'btn-req-tableco', 'status-tableco');
+});
+
+document.getElementById('btn-req-signalco').addEventListener('click', () => {
+    sendProvisionRequest('SignalCo', 'btn-req-signalco', 'status-signalco');
 });
