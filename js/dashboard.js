@@ -1,4 +1,19 @@
-// Initialize Firebase references
+// 1. INJECT FIREBASE CONFIGURATION FIRST
+const firebaseConfig = {
+    apiKey: "AIzaSyDKaT-5zrry7pNHkqSFdx-OhhtuAPe97y8",
+    authDomain: "pixel-array-net.firebaseapp.com",
+    projectId: "pixel-array-net",
+    storageBucket: "pixel-array-net.firebasestorage.app",
+    messagingSenderId: "63643759347",
+    appId: "1:63643759347:web:79078b6c106b29c238bd86",
+    measurementId: "G-KTNZJQ2CBG"
+};
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
+// 2. NOW INITIALIZE REFERENCES
 const auth = firebase.auth();
 const db = firebase.firestore();
 
@@ -13,11 +28,13 @@ const premiumUI = document.getElementById('premium-ui');
 const stripeBtn = document.getElementById('stripe-checkout-btn');
 const btnLogout = document.getElementById('btn-logout');
 
+// 3. CORE AUTHENTICATION LOOP
 auth.onAuthStateChanged(async (user) => {
     if (user) {
         try {
             const userDoc = await db.collection('users').doc(user.uid).get();
             
+            // Hide the "Authenticating..." screen
             loading.classList.add('hidden');
             hubContainer.classList.remove('hidden');
 
