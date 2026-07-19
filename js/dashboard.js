@@ -1,65 +1,45 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
-// (Insert your Firebase config here)
+// (Assuming you initialize Firebase config at the top of this file, or it carries over if loaded correctly)
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-const auth = getAuth(app);
-const db = getFirestore(app);
+// STRIPE PAYMENT LINK - Insert your live/test link here!
+const STRIPE_BASE_URL = "https://buy.stripe.com/test_YOUR_LINK_HERE";
 
 // DOM Elements
-const authGuard = document.getElementById('auth-guard');
-const uiSidebar = document.getElementById('ui-sidebar');
-const uiMain = document.getElementById('ui-main');
-const emailDisplay = document.getElementById('user-email-display');
+const loading = document.getElementById('loading');
+const hubContainer = document.getElementById('hub-container');
+const liteUI = document.getElementById('lite-ui');
+const premiumUI = document.getElementById('premium-ui');
+const stripeBtn = document.getElementById('stripe-checkout-btn');
 const btnLogout = document.getElementById('btn-logout');
 
-// Core Authentication Loop
-onAuthStateChanged(auth, async (user) => {
+auth.onAuthStateChanged(async (user) => {
     if (user) {
         try {
-            // Update UI with user info
-            emailDisplay.textContent = user.email;
+            const userDoc = await db.collection('users').doc(user.uid).get();
+            
+            loading.classList.add('hidden');
+            hubContainer.classList.remove('hidden');
 
-            // Fetch the user's license tier
-            const userDocRef = doc(db, "users", user.uid);
-            const docSnap = await getDoc(userDocRef);
-
-            if (docSnap.exists() && docSnap.data().status === 'premium') {
-                unlockDashboard();
+            if (userDoc.exists && userDoc.data().status === 'premium') {
+                // USER IS PRO: Show the tools
+                premiumUI.classList.remove('hidden');
             } else {
-                handleUnauthorized();
+                // USER IS LITE: Show the upgrade path and INJECT THEIR UID
+                stripeBtn.href = `${STRIPE_BASE_URL}?client_reference_id=${user.uid}`;
+                liteUI.classList.remove('hidden');
             }
         } catch (error) {
-            console.error("Database validation failed:", error);
-            handleUnauthorized();
+            console.error("Error fetching profile:", error);
         }
     } else {
-        handleUnauthorized();
+        // Not logged in at all, boot them to the login screen
+        window.location.replace("login-test.html");
     }
 });
 
-// State Managers
-function unlockDashboard() {
-    // Fade out the guard, reveal the dashboard
-    authGuard.classList.add('opacity-0', 'pointer-events-none');
-    setTimeout(() => {
-        authGuard.classList.add('hidden');
-        uiSidebar.classList.remove('hidden');
-        uiMain.classList.remove('hidden');
-    }, 300); // Matches the Tailwind transition duration
-}
-
-function handleUnauthorized() {
-    // Kick them to a unified login/upgrade portal
-    window.location.replace("login-test.html?alert=requires_premium");
-}
-
-// Logout Handler
-btnLogout.addEventListener('click', async () => {
-    try {
-        await signOut(auth);
+btnLogout.addEventListener('click', () => {
+    auth.signOut().then(() => {
         window.location.replace("login-test.html");
-    } catch (error) {
-        console.error("Error signing out:", error);
-    }
+    });
 });
