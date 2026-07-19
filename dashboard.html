@@ -24,7 +24,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
 
@@ -74,13 +73,6 @@
                             <a id="stripe-checkout-btn" href="#" class="btn btn-marker" style="padding: 1.25rem 3rem; font-size: 1.1rem; display: inline-block;">
                                 Subscribe for $49.99/mo
                             </a>
-                            
-                            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: var(--paper-dim); display: flex; align-items: center; justify-content: center; gap: 6px;">
-                                <svg width="24" height="24" viewBox="0 0 40 40" fill="currentColor">
-                                    <path d="M19.74,13.62c-2.31,0-4.04,1.06-4.04,2.79c0,1.54,1.44,2.4,3.75,2.98l2.12,.58c2.98,.77,4.81,2.02,4.81,4.52,0,3.37-3.17,5.58-7.79,5.58-3.08,0-6.15-1.15-8.46-2.69l1.44-4.13c2.4,1.35,5.19,2.4,7.4,2.4,2.6,0,4.23-1.06,4.23-2.88,0-1.63-1.35-2.5-3.85-3.08l-1.92-.48c-3.17-.87-4.81-2.21-4.81-4.52,0-3.37,3.08-5.38,7.31-5.38,2.79,0,5.29,.87,7.4,2.12l-1.44,4.04c-1.92-1.06-4.23-1.83-6.15-1.83Z"/>
-                                </svg>
-                                Secure payment powered by Stripe
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -88,31 +80,27 @@
                 <!-- STATE 2: PREMIUM USER (Tools Unlocked) -->
                 <div id="premium-ui" class="hidden" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
 
-                    <!-- Tableco Generator -->
+                    <!-- TableCo Request -->
                     <div style="background: var(--ink); padding: 2.5rem 2rem; border: 1px solid var(--line-strong); border-radius: 8px; display: flex; flex-direction: column;">
                         <p class="eyebrow" style="color: var(--paper-dim);">Live Seating Chart</p>
                         <h3 style="margin-top: 0; font-size: 1.75rem;">TableCo Pro</h3>
-                        <p style="color: var(--paper-dim); margin-bottom: 2rem;">Deploy a new, unrestricted database node and seating chart for your next event.</p>
-                        <button id="btn-generate-tableco" class="btn btn-ghost" style="align-self: flex-start; border: 1px solid var(--line-strong); cursor: pointer;">+ Create New Event</button>
-
-                        <!-- The Link Readout -->
-                        <div id="tableco-result-box" class="hidden" style="margin-top: 2rem; padding: 1.25rem; background: #000; border: 1px solid var(--blueprint); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-                            <span id="tableco-link-display" style="font-family: var(--mono); font-size: 0.8rem; color: var(--paper); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all;"></span>
-                            <button onclick="copyToClipboard('tableco-link-display')" class="btn btn-marker" style="padding: 0.5rem 1rem; font-size: 0.75rem; cursor: pointer; white-space: nowrap;">Copy URL</button>
+                        <p style="color: var(--paper-dim); margin-bottom: 2rem;">Dispatch a request to the server to provision a fresh, unrestricted database node for your next event.</p>
+                        
+                        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <button id="btn-req-tableco" class="btn btn-ghost" style="border: 1px solid var(--line-strong); cursor: pointer; width: 100%;">Deploy Instance via Email</button>
+                            <p id="status-tableco" style="margin: 0; font-size: 0.85rem; color: #4ade80; display: none; text-align: center;"></p>
                         </div>
                     </div>
 
-                    <!-- SignalCo Generator -->
+                    <!-- SignalCo Request -->
                     <div style="background: var(--ink); padding: 2.5rem 2rem; border: 1px solid var(--line-strong); border-radius: 8px; display: flex; flex-direction: column;">
                         <p class="eyebrow" style="color: var(--paper-dim);">Live Comms Network</p>
                         <h3 style="margin-top: 0; font-size: 1.75rem;">SignalCo Master</h3>
-                        <p style="color: var(--paper-dim); margin-bottom: 2rem;">Spin up a new secure comms matrix and multi-terminal network.</p>
-                        <button id="btn-generate-signalco" class="btn btn-ghost" style="align-self: flex-start; border: 1px solid var(--line-strong); cursor: pointer;">+ Create New Matrix</button>
-
-                        <!-- The Link Readout -->
-                        <div id="signalco-result-box" class="hidden" style="margin-top: 2rem; padding: 1.25rem; background: #000; border: 1px solid var(--blueprint); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
-                            <span id="signalco-link-display" style="font-family: var(--mono); font-size: 0.8rem; color: var(--paper); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all;"></span>
-                            <button onclick="copyToClipboard('signalco-link-display')" class="btn btn-marker" style="padding: 0.5rem 1rem; font-size: 0.75rem; cursor: pointer; white-space: nowrap;">Copy URL</button>
+                        <p style="color: var(--paper-dim); margin-bottom: 2rem;">Request a secure comms matrix and multi-terminal network to be generated for your next show.</p>
+                        
+                        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <button id="btn-req-signalco" class="btn btn-ghost" style="border: 1px solid var(--line-strong); cursor: pointer; width: 100%;">Deploy Instance via Email</button>
+                            <p id="status-signalco" style="margin: 0; font-size: 0.85rem; color: #4ade80; display: none; text-align: center;"></p>
                         </div>
                     </div>
 
