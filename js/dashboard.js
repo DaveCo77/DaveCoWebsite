@@ -3,7 +3,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // STRIPE PAYMENT LINK - Insert your live/test link here!
-const STRIPE_BASE_URL = "https://buy.stripe.com/test_YOUR_LINK_HERE";
+const STRIPE_BASE_URL = "https://buy.stripe.com/test_7sY8wJ0up9xB3gff4Nbwk01;
 
 // DOM Elements
 const loading = document.getElementById('loading');
