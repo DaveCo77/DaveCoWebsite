@@ -2,40 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pixel Array | Portal Setup</title>
-    <style>
-        body { background: #0b1016; color: #fff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .auth-box { background: #161b22; padding: 2rem; border-radius: 8px; border: 1px solid #30363d; width: 100%; max-width: 350px; text-align: center; }
-        input { width: 100%; padding: 0.75rem; margin-bottom: 1rem; background: #000; border: 1px solid #30363d; color: #fff; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 0.75rem; background: #3b82f6; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
-        #status-msg { margin-top: 1rem; font-size: 0.85rem; }
-    </style>
-
-    <!-- FIREBASE CDNs -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Array | Secure Portal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FIREBASE CDNs (v8) -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-</head>
-<body>
 
-    <div class="auth-box">
-        <h2 style="margin-top: 0; color: #3b82f6;">Create Account</h2>
-        <input type="email" id="email" placeholder="Email Address" required>
-        <input type="password" id="password" placeholder="Password (min 6 chars)" required>
-        <button id="signup-btn">Sign Up</button>
-        <p id="status-msg"></p>
+    <style>
+        body { background-color: #050505; }
+        .glass-panel {
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center text-slate-300 font-sans p-4 relative overflow-hidden">
+
+    <!-- Ambient Background Glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="glass-panel w-full max-w-md rounded-2xl shadow-2xl p-8 relative z-10">
+        
+        <!-- HEADER / BRANDING -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 mb-4">
+                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
+            </div>
+            <h1 class="text-3xl font-black tracking-tighter uppercase text-white">PIXEL <span class="text-blue-500">ARRAY</span></h1>
+            <p class="text-xs text-slate-500 mt-2 font-mono uppercase tracking-widest">Secure Access Portal</p>
+        </div>
+
+        <!-- MODE TOGGLE -->
+        <div class="flex bg-black rounded-lg p-1 mb-6 border border-white/5">
+            <button id="tab-login" class="flex-1 py-2 text-sm font-bold rounded-md bg-slate-800 text-white transition-all">Sign In</button>
+            <button id="tab-signup" class="flex-1 py-2 text-sm font-bold rounded-md text-slate-500 hover:text-slate-300 transition-all">Create Account</button>
+        </div>
+
+        <!-- FORM -->
+        <div class="space-y-4">
+            <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1 uppercase tracking-wider">Email Address</label>
+                <input type="email" id="email" placeholder="sysadmin@pixelarray.com.au" required
+                       class="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
+            </div>
+
+            <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1 uppercase tracking-wider">Passphrase</label>
+                <input type="password" id="password" placeholder="••••••••" required
+                       class="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
+            </div>
+
+            <button id="auth-btn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition-all active:scale-[0.98] mt-2 uppercase tracking-widest text-sm">
+                Authenticate
+            </button>
+        </div>
+
+        <!-- STATUS MESSAGE -->
+        <div id="status-container" class="mt-6 hidden p-3 rounded-lg border text-sm text-center font-mono">
+            <span id="status-msg"></span>
+        </div>
+
     </div>
 
     <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDKaT-5zrry7pNHkqSFdx-OhhtuAPe97y8",
-  authDomain: "pixel-array-net.firebaseapp.com",
-  projectId: "pixel-array-net",
-  storageBucket: "pixel-array-net.firebasestorage.app",
-  messagingSenderId: "63643759347",
-  appId: "1:63643759347:web:79078b6c106b29c238bd86",
-  measurementId: "G-KTNZJQ2CBG"
-};
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKaT-5zrry7pNHkqSFdx-OhhtuAPe97y8",
+            authDomain: "pixel-array-net.firebaseapp.com",
+            projectId: "pixel-array-net",
+            storageBucket: "pixel-array-net.firebasestorage.app",
+            messagingSenderId: "63643759347",
+            appId: "1:63643759347:web:79078b6c106b29c238bd86",
+            measurementId: "G-KTNZJQ2CBG"
+        };
+        
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
@@ -43,43 +88,88 @@ const firebaseConfig = {
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        const signupBtn = document.getElementById('signup-btn');
+        // UI Elements
+        let isLoginMode = true;
+        const tabLogin = document.getElementById('tab-login');
+        const tabSignup = document.getElementById('tab-signup');
+        const authBtn = document.getElementById('auth-btn');
+        const statusContainer = document.getElementById('status-container');
         const statusMsg = document.getElementById('status-msg');
 
-        signupBtn.addEventListener('click', async () => {
+        // Toggle UI Modes
+        function setMode(login) {
+            isLoginMode = login;
+            if (login) {
+                tabLogin.className = "flex-1 py-2 text-sm font-bold rounded-md bg-slate-800 text-white transition-all shadow-sm";
+                tabSignup.className = "flex-1 py-2 text-sm font-bold rounded-md text-slate-500 hover:text-slate-300 transition-all";
+                authBtn.textContent = "AUTHENTICATE";
+            } else {
+                tabSignup.className = "flex-1 py-2 text-sm font-bold rounded-md bg-slate-800 text-white transition-all shadow-sm";
+                tabLogin.className = "flex-1 py-2 text-sm font-bold rounded-md text-slate-500 hover:text-slate-300 transition-all";
+                authBtn.textContent = "INITIALIZE ACCOUNT";
+            }
+            statusContainer.classList.add('hidden');
+        }
+
+        tabLogin.addEventListener('click', () => setMode(true));
+        tabSignup.addEventListener('click', () => setMode(false));
+
+        // Helper to show messages
+        function showMessage(msg, type) {
+            statusContainer.classList.remove('hidden', 'bg-red-500/10', 'border-red-500/30', 'text-red-400', 'bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-400', 'bg-blue-500/10', 'border-blue-500/30', 'text-blue-400');
+            
+            if (type === 'error') statusContainer.classList.add('bg-red-500/10', 'border-red-500/30', 'text-red-400');
+            else if (type === 'success') statusContainer.classList.add('bg-emerald-500/10', 'border-emerald-500/30', 'text-emerald-400');
+            else statusContainer.classList.add('bg-blue-500/10', 'border-blue-500/30', 'text-blue-400');
+            
+            statusMsg.textContent = msg;
+        }
+
+        // Main Auth Logic
+        authBtn.addEventListener('click', async () => {
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
 
             if (!email || password.length < 6) {
-                statusMsg.textContent = "❌ Please enter a valid email and a 6+ character password.";
-                statusMsg.style.color = "#ef4444";
+                showMessage("Invalid matrix data. Minimum 6 character passphrase required.", "error");
                 return;
             }
 
-            signupBtn.textContent = "Creating Account...";
-            signupBtn.disabled = true;
+            authBtn.disabled = true;
+            authBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
             try {
-                // 1. Create the secure login credentials
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
+                if (isLoginMode) {
+                    authBtn.textContent = "VERIFYING CREDENTIALS...";
+                    await auth.signInWithEmailAndPassword(email, password);
+                    showMessage("Access Granted. Routing to dashboard...", "success");
+                    
+                    // Route them to your new Premium Hub or Tool
+                    setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
 
-                // 2. Build their profile in Firestore, defaulting to the free tier
-                await db.collection('users').doc(user.uid).set({
-                    email: user.email,
-                    status: 'lite', // This is what Stripe will change to 'premium' later!
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
+                } else {
+                    authBtn.textContent = "BUILDING PROFILE...";
+                    
+                    // 1. Create the secure login credentials
+                    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                    const user = userCredential.user;
 
-                statusMsg.textContent = "✅ Account created successfully!";
-                statusMsg.style.color = "#4ade80";
+                    // 2. Build their profile in Firestore, defaulting to the free tier
+                    await db.collection('users').doc(user.uid).set({
+                        email: user.email,
+                        status: 'lite', // This is what Stripe will change to 'premium' later!
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
 
+                    showMessage("Profile Initialized. Routing to dashboard...", "success");
+                    setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
+                }
             } catch (error) {
                 console.error(error);
-                statusMsg.textContent = `❌ Error: ${error.message}`;
-                statusMsg.style.color = "#ef4444";
-                signupBtn.textContent = "Sign Up";
-                signupBtn.disabled = false;
+                showMessage(`ERR: ${error.message}`, "error");
+                authBtn.disabled = false;
+                authBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                authBtn.textContent = isLoginMode ? "AUTHENTICATE" : "INITIALIZE ACCOUNT";
             }
         });
     </script>
