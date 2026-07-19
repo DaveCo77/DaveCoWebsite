@@ -1,9 +1,9 @@
-// (Assuming you initialize Firebase config at the top of this file, or it carries over if loaded correctly)
+// Initialize Firebase references
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// STRIPE PAYMENT LINK - Insert your live/test link here!
-const STRIPE_BASE_URL = "https://buy.stripe.com/test_7sY8wJ0up9xB3gff4Nbwk01;
+// STRIPE PAYMENT LINK
+const STRIPE_BASE_URL = "https://buy.stripe.com/test_7sY8wJ0up9xB3gff4Nbwk01";
 
 // DOM Elements
 const loading = document.getElementById('loading');
@@ -22,11 +22,13 @@ auth.onAuthStateChanged(async (user) => {
             hubContainer.classList.remove('hidden');
 
             if (userDoc.exists && userDoc.data().status === 'premium') {
-                // USER IS PRO: Show the tools
+                // USER IS PRO: Show the unlocked tools
+                liteUI.classList.add('hidden');
                 premiumUI.classList.remove('hidden');
             } else {
                 // USER IS LITE: Show the upgrade path and INJECT THEIR UID
                 stripeBtn.href = `${STRIPE_BASE_URL}?client_reference_id=${user.uid}`;
+                premiumUI.classList.add('hidden');
                 liteUI.classList.remove('hidden');
             }
         } catch (error) {
