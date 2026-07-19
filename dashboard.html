@@ -2,45 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pixel Array | Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-[#050505] text-white font-sans min-h-screen flex flex-col items-center justify-center p-6">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Array | Premium Hub</title>
 
-    <div id="loading" class="text-slate-500 animate-pulse">Authenticating...</div>
+    <!-- Tap directly into the master Pixel Array stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
 
-    <!-- MAIN HUB CONTAINER -->
-    <div id="hub-container" class="hidden w-full max-w-4xl">
-        <div class="flex justify-between items-end mb-8 border-b border-white/10 pb-4">
-            <h1 class="text-3xl font-black uppercase tracking-tighter">Software <span class="text-blue-500">Hub</span></h1>
-            <button id="btn-logout" class="text-sm text-slate-500 hover:text-red-400">Sign Out</button>
-        </div>
+    <style>
+        /* Utility classes to ensure dashboard.js toggles work without Tailwind */
+        .hidden { display: none !important; }
 
-        <!-- STATE 1: LITE USER (Needs to Upgrade) -->
-        <div id="lite-ui" class="hidden bg-[#111] border border-white/10 rounded-lg p-8 text-center mb-8">
-            <h2 class="text-xl font-bold mb-2">Upgrade to Pixel Array Premium</h2>
-            <p class="text-slate-400 mb-6 text-sm">Unlock unrestricted access to the full Pixel Array Software Suite.</p>
-            
-            <!-- THE CRITICAL STRIPE LINK -->
-            <a id="stripe-checkout-btn" href="#" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded transition-all">
-                Subscribe for $49.99/mo
-            </a>
-        </div>
-
-        <!-- STATE 2: PREMIUM USER (Tools Unlocked) -->
-        <div id="premium-ui" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a href="https://signalco.pixelarray.com.au/master.html" class="block bg-[#111] border border-white/10 hover:border-blue-500 p-6 rounded-lg transition-all group">
-                <h3 class="text-lg font-bold text-white group-hover:text-blue-400">SignalCo Pro</h3>
-                <p class="text-sm text-slate-500 mt-1">Launch Master Control</p>
-            </a>
-            <!-- Add other tools here -->
-        </div>
-    </div>
+        /* Simple pulse animation for the initial loading state */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+
+    <!-- BRANDED HEADER -->
+    <header class="site-head">
+      <div class="head-row">
+        <a href="index.html" class="brand"><span class="mark" aria-hidden="true"></span>Pixel<span class="x">Array</span></a>
+        <div class="head-actions">
+          <button id="btn-logout" class="btn btn-ghost" style="border: none; cursor: pointer;">Sign Out</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" style="min-height: 100vh; display: flex; align-items: center; padding-top: 4rem;">
+        
+        <!-- Background Accents -->
+        <div class="grid-bg" aria-hidden="true"></div>
+        <div class="crosshair" aria-hidden="true"></div>
+
+        <div class="wrap hero-inner" style="grid-template-columns: 1fr; max-width: 1000px; margin: 0 auto; width: 100%;">
+
+            <!-- LOADING STATE -->
+            <div id="loading" class="animate-pulse" style="text-align: center; color: var(--paper-dim); font-family: var(--mono); padding: 4rem; letter-spacing: 2px;">
+                [ AUTHENTICATING NETWORK LICENSES... ]
+            </div>
+
+            <!-- MAIN HUB CONTAINER -->
+            <div id="hub-container" class="hidden reveal">
+                
+                <div style="margin-bottom: 3rem; border-bottom: 1px solid var(--line-strong); padding-bottom: 1.5rem;">
+                    <p class="eyebrow">Command Center</p>
+                    <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0;">Software<br><em>Hub.</em></h1>
+                </div>
+
+                <!-- STATE 1: LITE USER (Needs to Upgrade) -->
+                <div id="lite-ui" class="hidden">
+                    <div style="background: var(--ink-raised); padding: 4rem 2rem; border: 1px solid var(--marker); border-radius: 8px; position: relative; display: flex; flex-direction: column; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        
+                        <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--marker); color: #000; font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;">Lite Tier Account</div>
+                        
+                        <h2 style="margin-top: 1rem; font-size: 2.25rem;">Upgrade to Pro</h2>
+                        <p style="color: var(--paper-dim); max-width: 550px; margin: 0 auto 2.5rem; line-height: 1.6;">Unlock unrestricted access to the full Pixel Array Software Suite, including unlimited SignalCo terminals, priority cloud infrastructure, and zero watermarks.</p>
+
+                        <!-- THE CRITICAL STRIPE LINK -->
+                        <div style="margin: 0 auto;">
+                            <a id="stripe-checkout-btn" href="#" class="btn btn-marker" style="padding: 1.25rem 3rem; font-size: 1.1rem; display: inline-block;">
+                                Subscribe for $49.99/mo
+                            </a>
+                            
+                            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: var(--paper-dim); display: flex; align-items: center; justify-content: center; gap: 6px;">
+                                <svg width="24" height="24" viewBox="0 0 40 40" fill="currentColor">
+                                    <path d="M19.74,13.62c-2.31,0-4.04,1.06-4.04,2.79c0,1.54,1.44,2.4,3.75,2.98l2.12,.58c2.98,.77,4.81,2.02,4.81,4.52,0,3.37-3.17,5.58-7.79,5.58-3.08,0-6.15-1.15-8.46-2.69l1.44-4.13c2.4,1.35,5.19,2.4,7.4,2.4,2.6,0,4.23-1.06,4.23-2.88,0-1.63-1.35-2.5-3.85-3.08l-1.92-.48c-3.17-.87-4.81-2.21-4.81-4.52,0-3.37,3.08-5.38,7.31-5.38,2.79,0,5.29,.87,7.4,2.12l-1.44,4.04c-1.92-1.06-4.23-1.83-6.15-1.83Z"/>
+                                </svg>
+                                Secure payment powered by Stripe
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATE 2: PREMIUM USER (Tools Unlocked) -->
+                <div id="premium-ui" class="hidden" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+
+                    <!-- Tableco Generator -->
+                    <div style="background: var(--ink); padding: 2.5rem 2rem; border: 1px solid var(--line-strong); border-radius: 8px; display: flex; flex-direction: column;">
+                        <p class="eyebrow" style="color: var(--paper-dim);">Live Seating Chart</p>
+                        <h3 style="margin-top: 0; font-size: 1.75rem;">TableCo Pro</h3>
+                        <p style="color: var(--paper-dim); margin-bottom: 2rem;">Deploy a new, unrestricted database node and seating chart for your next event.</p>
+                        <button id="btn-generate-tableco" class="btn btn-ghost" style="align-self: flex-start; border: 1px solid var(--line-strong); cursor: pointer;">+ Create New Event</button>
+
+                        <!-- The Link Readout -->
+                        <div id="tableco-result-box" class="hidden" style="margin-top: 2rem; padding: 1.25rem; background: #000; border: 1px solid var(--blueprint); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                            <span id="tableco-link-display" style="font-family: var(--mono); font-size: 0.8rem; color: var(--paper); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all;"></span>
+                            <button onclick="copyToClipboard('tableco-link-display')" class="btn btn-marker" style="padding: 0.5rem 1rem; font-size: 0.75rem; cursor: pointer; white-space: nowrap;">Copy URL</button>
+                        </div>
+                    </div>
+
+                    <!-- SignalCo Generator -->
+                    <div style="background: var(--ink); padding: 2.5rem 2rem; border: 1px solid var(--line-strong); border-radius: 8px; display: flex; flex-direction: column;">
+                        <p class="eyebrow" style="color: var(--paper-dim);">Live Comms Network</p>
+                        <h3 style="margin-top: 0; font-size: 1.75rem;">SignalCo Master</h3>
+                        <p style="color: var(--paper-dim); margin-bottom: 2rem;">Spin up a new secure comms matrix and multi-terminal network.</p>
+                        <button id="btn-generate-signalco" class="btn btn-ghost" style="align-self: flex-start; border: 1px solid var(--line-strong); cursor: pointer;">+ Create New Matrix</button>
+
+                        <!-- The Link Readout -->
+                        <div id="signalco-result-box" class="hidden" style="margin-top: 2rem; padding: 1.25rem; background: #000; border: 1px solid var(--blueprint); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                            <span id="signalco-link-display" style="font-family: var(--mono); font-size: 0.8rem; color: var(--paper); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all;"></span>
+                            <button onclick="copyToClipboard('signalco-link-display')" class="btn btn-marker" style="padding: 0.5rem 1rem; font-size: 0.75rem; cursor: pointer; white-space: nowrap;">Copy URL</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Connect JS Engine -->
     <script src="./js/dashboard.js"></script>
+
 </body>
 </html>
